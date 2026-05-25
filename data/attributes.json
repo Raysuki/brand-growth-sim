@@ -1,0 +1,57 @@
+{
+  "source": "详细玩法设计2.0.docx image1/image2 and body text",
+  "range": { "min": 0, "max": 300 },
+  "initial": {
+    "brand_awareness": 22,
+    "brand_cognition": 28,
+    "brand_association": 35,
+    "brand_loyalty": 26,
+    "channel_control": 20,
+    "funds": 100,
+    "action_points_max": 4,
+    "public_risk": 0
+  },
+  "attributes": [
+    {
+      "id": "brand_awareness",
+      "name": "品牌知名度",
+      "theory": "品牌知名度",
+      "meaning": "品牌被市场看见与记住的程度",
+      "role": "决定短期流量获取效率、外部合作门槛与销量"
+    },
+    {
+      "id": "brand_cognition",
+      "name": "品牌认知度",
+      "theory": "品牌认知度",
+      "meaning": "消费者对品牌产品力与功能价值的理解程度",
+      "role": "决定基础转化率、信任度与长期购买意愿"
+    },
+    {
+      "id": "brand_association",
+      "name": "品牌联想度",
+      "theory": "品牌联想",
+      "meaning": "消费者对品牌风格、审美与个性的感知强度",
+      "role": "决定溢价能力、高端合作门槛与品牌辨识度"
+    },
+    {
+      "id": "brand_loyalty",
+      "name": "品牌忠诚度",
+      "theory": "品牌忠诚度",
+      "meaning": "消费者对品牌的复购倾向与情感黏性",
+      "role": "决定复购率、口碑传播效率与危机承压能力"
+    },
+    {
+      "id": "channel_control",
+      "name": "渠道掌控力",
+      "theory": "其他品牌资产（渠道）",
+      "meaning": "品牌对销售渠道与分销网络的控制程度",
+      "role": "决定热度向销量的转化效率与市场覆盖范围"
+    }
+  ],
+  "beauty_modifiers": {
+    "visual_design_multiplier": 1.15,
+    "social_or_kol_multiplier": 1.10,
+    "ingredient_upgrade_extra_association": true,
+    "ingredient_safety_crisis_extra_risk": 10
+  }
+}

@@ -1,0 +1,613 @@
+[gd_scene format=3 uid="uid://ben77d8ll763t"]
+
+[ext_resource type="Script" uid="uid://baxjautb3w8m5" path="res://scripts/Main.gd" id="1_main"]
+[ext_resource type="Texture2D" uid="uid://du5af7rwu7cer" path="res://assets/backgrounds/初创期共享办公室.png" id="2_rarhs"]
+[ext_resource type="Texture2D" uid="uid://cj25ng6asc6eh" path="res://assets/npcs/看板娘.png" id="3_vcsgt"]
+[ext_resource type="Texture2D" uid="uid://cygiube00bsb" path="res://assets/ui/icon_restart.png" id="4_c01mt"]
+[ext_resource type="Texture2D" uid="uid://vrbgi6v2381w" path="res://assets/icons/游戏名logo.png" id="4_lhr70"]
+[ext_resource type="Texture2D" uid="uid://cudibd73wl6lg" path="res://assets/ui/品牌属性面板底图.png" id="7_bjd11"]
+[ext_resource type="Texture2D" uid="uid://ddi4givd4fe45" path="res://assets/ui/右侧行动大面板底图.png" id="8_qmy6f"]
+[ext_resource type="Texture2D" uid="uid://c12t6wbj64xck" path="res://assets/ui/计划提示条底图.png" id="9_mwfav"]
+[ext_resource type="Texture2D" uid="uid://bmbtcdnqew1nh" path="res://assets/icons/结束回合.png" id="10_3p2gp"]
+
+[sub_resource type="StyleBoxFlat" id="StyleSmallButton"]
+bg_color = Color(1, 1, 1, 0.86)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.8, 0.95, 0.9, 1)
+corner_radius_top_left = 18
+corner_radius_top_right = 18
+corner_radius_bottom_right = 18
+corner_radius_bottom_left = 18
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_q8u5g"]
+texture = ExtResource("7_bjd11")
+texture_margin_left = 38.0
+texture_margin_top = 28.0
+texture_margin_right = 38.0
+texture_margin_bottom = 28.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lhr70"]
+texture = ExtResource("8_qmy6f")
+texture_margin_left = 42.0
+texture_margin_top = 42.0
+texture_margin_right = 42.0
+texture_margin_bottom = 42.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wp0k4"]
+texture = ExtResource("9_mwfav")
+texture_margin_left = 22.0
+texture_margin_top = 14.0
+texture_margin_right = 22.0
+texture_margin_bottom = 14.0
+
+[sub_resource type="StyleBoxFlat" id="StyleFinish"]
+bg_color = Color(1, 0.498039, 0.596078, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 28
+corner_radius_top_right = 28
+corner_radius_bottom_right = 28
+corner_radius_bottom_left = 28
+shadow_color = Color(0.45, 0.14, 0.2, 0.18)
+shadow_size = 6
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxFlat" id="StylePopup"]
+bg_color = Color(1, 0.985, 0.955, 0.96)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.941176, 0.784314, 0.67451, 1)
+corner_radius_top_left = 22
+corner_radius_top_right = 22
+corner_radius_bottom_right = 22
+corner_radius_bottom_left = 22
+
+[node name="Main" type="Control" unique_id=1986292780]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_main")
+
+[node name="Background" type="TextureRect" parent="." unique_id=973438500]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("2_rarhs")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Tint" type="ColorRect" parent="." unique_id=673962934]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 0.94, 0.89, 0.24)
+
+[node name="Logo" type="TextureRect" parent="." unique_id=1054800202]
+unique_name_in_owner = true
+z_index = 5
+layout_mode = 0
+offset_top = 20.0
+offset_right = 344.0
+offset_bottom = 124.0
+mouse_filter = 2
+texture = ExtResource("4_lhr70")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="StatusLabel" type="Label" parent="." unique_id=425708632]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+offset_left = 610.0
+offset_top = 22.0
+offset_right = 1110.0
+offset_bottom = 64.0
+theme_override_colors/font_color = Color(0.419608, 0.356863, 0.407843, 1)
+theme_override_font_sizes/font_size = 14
+text = "编辑器预览：现在可以在 Main.tscn 里直接拖动布局。"
+horizontal_alignment = 2
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="RestartButton" type="Button" parent="." unique_id=829424953]
+unique_name_in_owner = true
+z_index = 5
+layout_mode = 0
+offset_left = 1210.0
+offset_top = 22.0
+offset_right = 1268.0
+offset_bottom = 80.0
+tooltip_text = "重新开始"
+theme_override_colors/font_color = Color(0.3019608, 0.21568628, 0.1764706, 1)
+theme_override_colors/font_focus_color = Color(0.3019608, 0.21568628, 0.1764706, 1)
+theme_override_colors/font_pressed_color = Color(0.3019608, 0.21568628, 0.1764706, 1)
+theme_override_colors/font_hover_color = Color(0.3019608, 0.21568628, 0.1764706, 1)
+theme_override_colors/font_disabled_color = Color(0.5411765, 0.41568628, 0.36078432, 1)
+theme_override_styles/normal = SubResource("StyleSmallButton")
+theme_override_styles/pressed = SubResource("StyleSmallButton")
+theme_override_styles/hover = SubResource("StyleSmallButton")
+icon = ExtResource("4_c01mt")
+expand_icon = true
+
+[node name="StageLine" type="HBoxContainer" parent="." unique_id=138226532]
+layout_mode = 0
+offset_left = 29.0
+offset_top = 134.0
+offset_right = 282.0
+offset_bottom = 168.0
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="StageStar" type="Label" parent="StageLine" unique_id=1065342509]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.972549, 0.796078, 1)
+theme_override_font_sizes/font_size = 20
+text = "★"
+
+[node name="StageNameLabel" type="Label" parent="StageLine" unique_id=175545688]
+unique_name_in_owner = true
+z_index = 5
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.47451, 0.682353, 0.623529, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 24
+text = "初创期"
+
+[node name="StageSep" type="Label" parent="StageLine" unique_id=1660354049]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 20
+text = "|"
+
+[node name="StageTurnLabel" type="Label" parent="StageLine" unique_id=351417401]
+unique_name_in_owner = true
+z_index = 5
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.47451, 0.682353, 0.623529, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 22
+text = "1 / 24 回合"
+
+[node name="ResourceGrid" type="GridContainer" parent="." unique_id=1387746091]
+layout_mode = 0
+offset_left = 428.0
+offset_top = 92.0
+offset_right = 726.0
+offset_bottom = 291.0
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 8
+columns = 2
+
+[node name="APTile" type="PanelContainer" parent="." unique_id=1531843918]
+custom_minimum_size = Vector2(145, 78)
+layout_mode = 0
+offset_left = 548.0
+offset_top = 20.0
+offset_right = 693.0
+offset_bottom = 101.0
+theme_override_styles/panel = SubResource("StyleSmallButton")
+
+[node name="APBox" type="VBoxContainer" parent="APTile" unique_id=888167951]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="APName" type="Label" parent="APTile/APBox" unique_id=637465667]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3019608, 0.21568628, 0.1764706, 1)
+theme_override_font_sizes/font_size = 12
+text = "行动点"
+horizontal_alignment = 1
+
+[node name="APValue" type="Label" parent="APTile/APBox" unique_id=18749266]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "本回合已安排 AP：0"
+theme_override_colors/font_color = Color(0.3019608, 0.21568628, 0.1764706, 1)
+theme_override_font_sizes/font_size = 18
+text = "4 / 4"
+horizontal_alignment = 1
+
+[node name="RiskTile" type="PanelContainer" parent="." unique_id=772040155]
+custom_minimum_size = Vector2(145, 78)
+layout_mode = 0
+offset_left = 711.0
+offset_top = 22.0
+offset_right = 856.0
+offset_bottom = 103.0
+scale = Vector2(0.92, 1)
+theme_override_styles/panel = SubResource("StyleSmallButton")
+
+[node name="RiskBox" type="VBoxContainer" parent="RiskTile" unique_id=1384721825]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="RiskName" type="Label" parent="RiskTile/RiskBox" unique_id=2003356788]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3019608, 0.21568628, 0.1764706, 1)
+theme_override_font_sizes/font_size = 12
+text = "舆情风险"
+horizontal_alignment = 1
+
+[node name="RiskValue" type="Label" parent="RiskTile/RiskBox" unique_id=286827567]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3019608, 0.21568628, 0.1764706, 1)
+theme_override_font_sizes/font_size = 18
+text = "0"
+horizontal_alignment = 1
+
+[node name="SaleTile" type="PanelContainer" parent="." unique_id=1236422078]
+custom_minimum_size = Vector2(145, 78)
+layout_mode = 0
+offset_left = 867.0
+offset_top = 20.0
+offset_right = 1012.0
+offset_bottom = 130.0
+scale = Vector2(0.7956925, 0.7799813)
+theme_override_styles/panel = SubResource("StyleSmallButton")
+
+[node name="SaleBox" type="VBoxContainer" parent="SaleTile" unique_id=1189911114]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="SaleName" type="Label" parent="SaleTile/SaleBox" unique_id=984661821]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3019608, 0.21568628, 0.1764706, 1)
+theme_override_font_sizes/font_size = 12
+text = "风口"
+horizontal_alignment = 1
+
+[node name="SaleValue" type="Label" parent="SaleTile/SaleBox" unique_id=164733039]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3019608, 0.21568628, 0.1764706, 1)
+theme_override_font_sizes/font_size = 18
+text = "健康生活
+×1.5"
+horizontal_alignment = 1
+
+[node name="FundsTile" type="PanelContainer" parent="." unique_id=931260667]
+custom_minimum_size = Vector2(145, 78)
+layout_mode = 0
+offset_left = 382.0
+offset_top = 20.0
+offset_right = 527.0
+offset_bottom = 101.0
+theme_override_styles/panel = SubResource("StyleSmallButton")
+
+[node name="FundsBox" type="VBoxContainer" parent="FundsTile" unique_id=1519796718]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="FundsName" type="Label" parent="FundsTile/FundsBox" unique_id=646386315]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3019608, 0.21568628, 0.1764706, 1)
+theme_override_font_sizes/font_size = 12
+text = "资金"
+horizontal_alignment = 1
+
+[node name="FundsValue" type="Label" parent="FundsTile/FundsBox" unique_id=1878034921]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "本回合计划资金：-0"
+theme_override_colors/font_color = Color(0.3019608, 0.21568628, 0.1764706, 1)
+theme_override_font_sizes/font_size = 18
+text = "100"
+horizontal_alignment = 1
+
+[node name="AttributePanel" type="PanelContainer" parent="." unique_id=2083222742]
+z_index = 5
+layout_mode = 0
+offset_left = 13.0
+offset_top = 190.0
+offset_right = 292.0
+offset_bottom = 541.38904
+scale = Vector2(1.309432, 1.2509695)
+theme_override_styles/panel = SubResource("StyleBoxTexture_q8u5g")
+
+[node name="AttributeMargin" type="MarginContainer" parent="AttributePanel" unique_id=956844891]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 18
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 18
+
+[node name="AttributeBox" type="VBoxContainer" parent="AttributePanel" unique_id=752485500]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="AttributeTitleRow" type="HBoxContainer" parent="AttributePanel/AttributeBox" unique_id=1266523100]
+layout_mode = 2
+
+[node name="AttributeList" type="VBoxContainer" parent="." unique_id=501549959]
+unique_name_in_owner = true
+z_index = 5
+layout_mode = 0
+offset_left = 40.0
+offset_top = 261.0
+offset_right = 264.0
+offset_bottom = 531.0
+scale = Vector2(1.309432, 1.2509695)
+theme_override_constants/separation = 5
+
+[node name="AttributeTitle" type="Label" parent="." unique_id=1566258483]
+layout_mode = 0
+offset_left = 79.0
+offset_top = 203.0
+offset_right = 179.0
+offset_bottom = 231.0
+scale = Vector2(1.0479474, 1.1371206)
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.262745, 0.239216, 0.305882, 1)
+theme_override_font_sizes/font_size = 20
+text = "品牌属性"
+
+[node name="LogLabel" type="RichTextLabel" parent="." unique_id=1758018626]
+unique_name_in_owner = true
+z_index = 5
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 0
+offset_left = 66.0
+offset_top = 577.0
+offset_right = 328.0
+offset_bottom = 621.0
+theme_override_colors/default_color = Color(0.352941, 0.32549, 0.384314, 1)
+theme_override_font_sizes/normal_font_size = 11
+scroll_active = false
+
+[node name="RightPanel" type="PanelContainer" parent="." unique_id=512318975]
+z_index = 5
+layout_mode = 0
+offset_left = 841.0
+offset_top = 110.0
+offset_right = 1274.0
+offset_bottom = 725.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_lhr70")
+
+[node name="ActionTitle" type="Label" parent="." unique_id=403405881]
+layout_mode = 0
+offset_left = 907.0
+offset_top = 145.0
+offset_right = 1030.0
+offset_bottom = 176.0
+theme_override_colors/font_color = Color(0.262745, 0.239216, 0.305882, 1)
+theme_override_font_sizes/font_size = 22
+text = "本回合行动"
+
+[node name="CategoryScroll" type="ScrollContainer" parent="." unique_id=364127623]
+custom_minimum_size = Vector2(0, 68)
+layout_mode = 0
+offset_left = 841.0
+offset_top = 190.0
+offset_right = 1243.0
+offset_bottom = 258.0
+vertical_scroll_mode = 0
+
+[node name="Mascot" type="TextureRect" parent="." unique_id=1006749182]
+unique_name_in_owner = true
+z_index = 1
+layout_mode = 0
+offset_left = 184.0
+offset_top = 130.0
+offset_right = 1082.0
+offset_bottom = 1088.0
+mouse_filter = 2
+texture = ExtResource("3_vcsgt")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ActionList" type="VBoxContainer" parent="." unique_id=1750129028]
+unique_name_in_owner = true
+z_index = 5
+layout_mode = 0
+offset_left = 865.0
+offset_top = 283.0
+offset_right = 1250.0
+offset_bottom = 587.0
+pivot_offset = Vector2(30, 27)
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+
+[node name="PlanPanel" type="PanelContainer" parent="." unique_id=27568958]
+unique_name_in_owner = true
+z_index = 5
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 0
+offset_left = 865.0
+offset_top = 607.0
+offset_right = 1235.0
+offset_bottom = 651.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_wp0k4")
+
+[node name="PlanLabel" type="Label" parent="." unique_id=810994234]
+unique_name_in_owner = true
+z_index = 5
+custom_minimum_size = Vector2(0, 36)
+layout_mode = 0
+offset_left = 923.0
+offset_top = 621.0
+offset_right = 1355.0
+offset_bottom = 657.0
+theme_override_colors/font_color = Color(0.3019608, 0.21568628, 0.1764706, 1)
+theme_override_font_sizes/font_size = 14
+text = "本回合计划：未选择    合计资金 0 / AP 0"
+autowrap_mode = 3
+
+[node name="ActionButtons" type="HBoxContainer" parent="." unique_id=946000214]
+layout_mode = 0
+offset_left = 849.0
+offset_top = 641.0
+offset_right = 1259.0
+offset_bottom = 713.0
+theme_override_constants/separation = 10
+metadata/_edit_group_ = true
+
+[node name="FinishTurnButton" type="Button" parent="." unique_id=637387902]
+unique_name_in_owner = true
+z_index = 5
+custom_minimum_size = Vector2(356, 72)
+layout_mode = 0
+offset_left = 938.0
+offset_top = 641.0
+offset_right = 1294.0
+offset_bottom = 713.0
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.3019608, 0.21568628, 0.1764706, 1)
+theme_override_colors/font_focus_color = Color(0.3019608, 0.21568628, 0.1764706, 1)
+theme_override_colors/font_pressed_color = Color(0.3019608, 0.21568628, 0.1764706, 1)
+theme_override_colors/font_hover_color = Color(0.3019608, 0.21568628, 0.1764706, 1)
+theme_override_colors/font_disabled_color = Color(0.5411765, 0.41568628, 0.36078432, 1)
+theme_override_font_sizes/font_size = 28
+theme_override_styles/normal = SubResource("StyleFinish")
+theme_override_styles/pressed = SubResource("StyleFinish")
+theme_override_styles/hover = SubResource("StyleFinish")
+icon = ExtResource("10_3p2gp")
+flat = true
+expand_icon = true
+
+[node name="ClearPlanButton" type="Button" parent="." unique_id=952602503]
+unique_name_in_owner = true
+z_index = 5
+custom_minimum_size = Vector2(94, 56)
+layout_mode = 0
+offset_left = 1140.0
+offset_top = 650.0
+offset_right = 1234.0
+offset_bottom = 706.0
+theme_override_colors/font_color = Color(0.3019608, 0.21568628, 0.1764706, 1)
+theme_override_colors/font_focus_color = Color(0.3019608, 0.21568628, 0.1764706, 1)
+theme_override_colors/font_pressed_color = Color(0.3019608, 0.21568628, 0.1764706, 1)
+theme_override_colors/font_hover_color = Color(0.3019608, 0.21568628, 0.1764706, 1)
+theme_override_colors/font_disabled_color = Color(0.5411765, 0.41568628, 0.36078432, 1)
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("StyleSmallButton")
+theme_override_styles/pressed = SubResource("StyleSmallButton")
+theme_override_styles/hover = SubResource("StyleSmallButton")
+text = "清空计划"
+
+[node name="CategoryList" type="HBoxContainer" parent="." unique_id=1579421797]
+unique_name_in_owner = true
+z_index = 5
+layout_mode = 0
+offset_left = 858.00006
+offset_top = 212.00002
+offset_right = 1300.0
+offset_bottom = 278.0
+scale = Vector2(0.887692, 0.9285714)
+theme_override_constants/separation = 6
+
+[node name="EventPanel" type="PanelContainer" parent="." unique_id=274541568]
+unique_name_in_owner = true
+visible = false
+z_index = 20
+layout_mode = 0
+offset_left = 230.0
+offset_top = 130.0
+offset_right = 1050.0
+offset_bottom = 590.0
+theme_override_styles/panel = SubResource("StylePopup")
+
+[node name="EventMargin" type="MarginContainer" parent="EventPanel" unique_id=2038648354]
+layout_mode = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 28
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 28
+
+[node name="EventBox" type="VBoxContainer" parent="EventPanel/EventMargin" unique_id=530741977]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="EventTitle" type="Label" parent="EventPanel/EventMargin/EventBox" unique_id=367907107]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3019608, 0.21568628, 0.1764706, 1)
+theme_override_font_sizes/font_size = 26
+
+[node name="EventBody" type="Label" parent="EventPanel/EventMargin/EventBox" unique_id=1812022288]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3019608, 0.21568628, 0.1764706, 1)
+theme_override_font_sizes/font_size = 17
+autowrap_mode = 3
+
+[node name="EventOptions" type="VBoxContainer" parent="EventPanel/EventMargin/EventBox" unique_id=1897637921]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="EndingPanel" type="PanelContainer" parent="." unique_id=1356337802]
+unique_name_in_owner = true
+visible = false
+z_index = 20
+layout_mode = 0
+offset_left = 220.0
+offset_top = 110.0
+offset_right = 1060.0
+offset_bottom = 610.0
+theme_override_styles/panel = SubResource("StylePopup")
+
+[node name="EndingMargin" type="MarginContainer" parent="EndingPanel" unique_id=1475947601]
+layout_mode = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 28
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 28
+
+[node name="EndingBox" type="VBoxContainer" parent="EndingPanel/EndingMargin" unique_id=1472765002]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="EndingTitle" type="Label" parent="EndingPanel/EndingMargin/EndingBox" unique_id=462056097]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3019608, 0.21568628, 0.1764706, 1)
+theme_override_font_sizes/font_size = 28
+
+[node name="EndingBody" type="Label" parent="EndingPanel/EndingMargin/EndingBox" unique_id=1411117121]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.3019608, 0.21568628, 0.1764706, 1)
+theme_override_font_sizes/font_size = 17
+autowrap_mode = 3
+
+[node name="CloseEndingButton" type="Button" parent="EndingPanel/EndingMargin/EndingBox" unique_id=1556288751]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(160, 46)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3019608, 0.21568628, 0.1764706, 1)
+theme_override_colors/font_focus_color = Color(0.3019608, 0.21568628, 0.1764706, 1)
+theme_override_colors/font_pressed_color = Color(0.3019608, 0.21568628, 0.1764706, 1)
+theme_override_colors/font_hover_color = Color(0.3019608, 0.21568628, 0.1764706, 1)
+theme_override_colors/font_disabled_color = Color(0.5411765, 0.41568628, 0.36078432, 1)
+theme_override_styles/normal = SubResource("StyleSmallButton")
+theme_override_styles/pressed = SubResource("StyleSmallButton")
+theme_override_styles/hover = SubResource("StyleSmallButton")
+text = "查看最终面板"
