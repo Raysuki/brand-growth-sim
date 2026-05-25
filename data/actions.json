@@ -1,0 +1,50 @@
+{
+  "source": "详细玩法设计2.0.docx image6/image7/image8/image10; notes column partially clipped in source images, only confirmed numeric effects are encoded",
+  "diminishing_returns": {
+    "window_turns": 3,
+    "multipliers": [1.0, 0.85, 0.7],
+    "market_research_minimum": 0.8,
+    "crisis_pr_exempt": true,
+    "trend_match_offsets_one_decay": true
+  },
+  "categories": [
+    { "id": "market_research", "name": "市场调研", "role": "获取洞察点数，预判风口，降低后续行动成本", "count_in_doc": 4 },
+    { "id": "product_rnd", "name": "产品研发", "role": "提升品牌认知度", "count_in_doc": 4 },
+    { "id": "visual_design", "name": "视觉设计", "role": "提升品牌联想度", "count_in_doc": 4 },
+    { "id": "marketing", "name": "营销推广", "role": "提升品牌知名度", "count_in_doc": 5 },
+    { "id": "channel", "name": "渠道建设", "role": "提升渠道掌控力", "count_in_doc": 4 },
+    { "id": "user_ops", "name": "用户运营", "role": "提升品牌忠诚度", "count_in_doc": 4 },
+    { "id": "crisis_pr", "name": "危机公关", "role": "止损、降低舆情风险", "count_in_doc": 4 }
+  ],
+  "actions": [
+    { "id": "consumer_interview", "name": "消费者访谈", "category": "market_research", "cost": 5, "ap": 1, "effects": {}, "insight": 1, "notes": "后续行动效果+15%" },
+    { "id": "competitor_breakdown", "name": "竞品拆解", "category": "market_research", "cost": 10, "ap": 1, "effects": {}, "insight": 1 },
+    { "id": "market_forecast", "name": "风向预判", "category": "market_research", "cost": 15, "ap": 1, "effects": {}, "forecast_next_trend": true, "notes": "提前1回合提示下季度风口" },
+    { "id": "data_mining", "name": "数据挖掘", "category": "market_research", "cost": 20, "ap": 1, "effects": { "brand_awareness": 3 }, "insight": 1 },
+    { "id": "function_iteration", "name": "功能迭代", "category": "product_rnd", "cost": 20, "ap": 1, "effects": { "brand_cognition": 10, "brand_loyalty": 2 }, "tags": ["function_iteration"] },
+    { "id": "tech_breakthrough", "name": "技术攻关", "category": "product_rnd", "cost": 40, "ap": 2, "effects": { "brand_cognition": 17 }, "notes": "15%概率暴击在当前版本待人工补充" },
+    { "id": "ingredient_upgrade", "name": "原料升级", "category": "product_rnd", "cost": 30, "ap": 1, "effects": { "brand_cognition": 8, "brand_loyalty": 5 }, "risk": -3, "ongoing_expense": 2, "tags": ["ingredient_upgrade"] },
+    { "id": "product_line_extension", "name": "产品线扩展", "category": "product_rnd", "cost": 50, "ap": 2, "effects": { "brand_cognition": 10, "channel_control": 5 }, "risk": 5, "ongoing_expense": 5 },
+    { "id": "logo_upgrade", "name": "LOGO升级", "category": "visual_design", "cost": 15, "ap": 1, "effects": { "brand_association": 8 }, "tags": ["logo_upgrade", "visual_design"] },
+    { "id": "package_redesign", "name": "包装重塑", "category": "visual_design", "cost": 25, "ap": 1, "effects": { "brand_association": 10, "brand_loyalty": 3 }, "tags": ["package_redesign", "visual_design"] },
+    { "id": "visual_standard", "name": "视觉规范", "category": "visual_design", "cost": 20, "ap": 1, "effects": { "brand_association": 5 }, "tags": ["visual_design"] },
+    { "id": "ip_design", "name": "IP形象设计", "category": "visual_design", "cost": 35, "ap": 1, "effects": { "brand_association": 10, "brand_awareness": 5 }, "tags": ["visual_design"] },
+    { "id": "social_seeding", "name": "社媒种草", "category": "marketing", "cost": 10, "ap": 1, "effects": { "brand_awareness": 12 }, "tags": ["social_seeding"] },
+    { "id": "ad_campaign", "name": "广告投放", "category": "marketing", "cost": 30, "ap": 1, "effects": { "brand_awareness": 24 }, "risk": 3, "tags": ["ad_campaign"] },
+    { "id": "controversial_marketing", "name": "碰瓷营销", "category": "marketing", "cost": 15, "ap": 1, "effects": { "brand_awareness": 28, "brand_loyalty": -12 }, "risk": 30, "high_risk": true },
+    { "id": "kol_collaboration", "name": "KOL合作", "category": "marketing", "cost": 25, "ap": 1, "effects": { "brand_awareness": 14, "brand_loyalty": 4, "brand_association": 3 }, "tags": ["kol"] },
+    { "id": "event_marketing", "name": "事件营销", "category": "marketing", "cost": 35, "ap": 1, "effects": { "brand_awareness": 18, "brand_association": 6 } },
+    { "id": "online_store", "name": "线上开店", "category": "channel", "cost": 20, "ap": 1, "effects": { "channel_control": 12 }, "tags": ["online_store"] },
+    { "id": "business_negotiation", "name": "商务谈判", "category": "channel", "cost": 15, "ap": 1, "effects": { "channel_control": 12 }, "tags": ["business_negotiation"] },
+    { "id": "offline_distribution", "name": "线下铺货", "category": "channel", "cost": 40, "ap": 2, "effects": { "channel_control": 17, "brand_awareness": 3 }, "risk": 2 },
+    { "id": "vertical_channel", "name": "垂直渠道深耕", "category": "channel", "cost": 25, "ap": 1, "effects": { "channel_control": 7, "brand_loyalty": 6 }, "tags": ["vertical_channel"] },
+    { "id": "community_ops", "name": "社群运营", "category": "user_ops", "cost": 8, "ap": 1, "effects": { "brand_loyalty": 7 }, "risk": -5, "tags": ["user_community"] },
+    { "id": "membership_system", "name": "会员体系", "category": "user_ops", "cost": 20, "ap": 1, "effects": { "brand_loyalty": 8, "brand_cognition": 3 }, "ongoing_expense": 6 },
+    { "id": "customer_service", "name": "客服优化", "category": "user_ops", "cost": 12, "ap": 1, "effects": { "brand_loyalty": 5 }, "risk": -12, "repair": true, "tags": ["customer_service"] },
+    { "id": "user_co_creation", "name": "用户共创", "category": "user_ops", "cost": 15, "ap": 1, "effects": { "brand_loyalty": 7, "brand_cognition": 4, "brand_association": 2 } },
+    { "id": "sincere_apology", "name": "诚恳道歉", "category": "crisis_pr", "cost": 10, "ap": 1, "effects": { "brand_loyalty": 10 }, "risk": -30, "repair": true },
+    { "id": "self_audit", "name": "自查整改", "category": "crisis_pr", "cost": 30, "ap": 1, "effects": { "brand_cognition": 5 }, "risk": -50, "repair": true, "tags": ["self_audit"] },
+    { "id": "paid_astroturfing", "name": "雇佣水军", "category": "crisis_pr", "cost": 20, "ap": 1, "effects": { "brand_awareness": 10, "brand_loyalty": -5 }, "risk": -20, "backfire_risk": 20, "high_risk": true },
+    { "id": "media_briefing", "name": "媒体沟通会", "category": "crisis_pr", "cost": 25, "ap": 1, "effects": { "brand_awareness": 5 }, "risk": -35, "repair": true }
+  ]
+}

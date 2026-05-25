@@ -1,0 +1,143 @@
+{
+  "source": "详细玩法设计2.0.docx image11-image18/image29-image33; only confirmed option effects are encoded",
+  "global_rules": {
+    "max_events_per_turn": 1,
+    "priority": ["forced_crisis", "milestone", "crisis", "opportunity"],
+    "opportunity_pity": "连续3回合未触发机遇事件时，第4回合机遇事件触发率+50%",
+    "crisis_forcing": "舆情风险>=60且连续2回合未执行危机公关时，下回合危机事件必触发",
+    "same_event_cooldown_turns": 4,
+    "beauty_extra_risk_for_ingredient_safety": 10
+  },
+  "events": [
+    {
+      "id": "purple_star",
+      "name": "天降紫微星",
+      "type": "opportunity",
+      "condition_text": "品牌联想度<=55且资金>=80；或品牌知名度>=65；概率每回合3%",
+      "condition": { "any": [ { "brand_association_lte": 55, "funds_gte": 80 }, { "brand_awareness_gte": 65 } ], "chance": 3 },
+      "description": "一位业内知名设计师或者营销操盘手主动联系你，表示认可品牌方向，希望加入团队。",
+      "options": [
+        { "id": "high_salary", "name": "高薪聘请", "cost": 40, "effects": { "brand_association": 12, "brand_awareness": 8 }, "ongoing_expense": 5 },
+        { "id": "equity", "name": "股权激励", "cost": 10, "effects": { "brand_association": 8, "brand_loyalty": 5 }, "ongoing_expense": 3 },
+        { "id": "refuse", "name": "婉拒合作", "effects": { "brand_awareness": -4 } }
+      ]
+    },
+    {
+      "id": "organic_miracle",
+      "name": "自来水奇迹",
+      "type": "opportunity",
+      "condition": { "brand_loyalty_gte": 75, "brand_cognition_gte": 60, "chance": 5 },
+      "condition_text": "品牌忠诚度>=75且品牌认知度>=60，近2回合未触发同类事件；概率每回合5%",
+      "description": "用户自发在短视频平台发布使用体验或妆容内容，意外走红，形成高质量二次传播。",
+      "options": [
+        { "id": "official_interact", "name": "官方转发互动", "effects": { "brand_awareness": 16, "brand_loyalty": 8 } },
+        { "id": "paid_boost", "name": "付费投流放大", "cost": 15, "effects": { "brand_awareness": 26, "brand_loyalty": 4 }, "risk": 3 },
+        { "id": "ignore", "name": "冷处理", "effects": { "brand_awareness": 8 } }
+      ]
+    },
+    {
+      "id": "platform_tailwind",
+      "name": "平台东风",
+      "type": "opportunity",
+      "condition": { "channel_control_gte": 40, "brand_awareness_gte": 50, "chance": 2 },
+      "condition_text": "渠道掌控力>=40且品牌知名度>=50；概率每回合2%",
+      "description": "某头部平台算法调整，你的品牌因标签匹配与内容表现进入优质新品流量池。",
+      "options": [
+        { "id": "deep_coop", "name": "深度合作", "cost": 30, "effects": { "channel_control": 12, "brand_awareness": 15 }, "ongoing_expense": 5 },
+        { "id": "standard_entry", "name": "标准入驻", "cost": 10, "effects": { "channel_control": 7, "brand_awareness": 8 } },
+        { "id": "traffic_only", "name": "仅蹭流量", "effects": { "brand_awareness": 4, "channel_control": 2 } }
+      ]
+    },
+    {
+      "id": "divine_connection",
+      "name": "神级接驳",
+      "type": "opportunity",
+      "condition": { "brand_association_gte": 70, "brand_awareness_gte": 60, "chance": 3 },
+      "condition_text": "品牌联想度>=70且品牌知名度>=60；概率每回合3%",
+      "description": "某知名IP、艺术家或高调性品牌发来联名合作邀约。",
+      "options": [
+        { "id": "deep_collab", "name": "深度联名", "cost": 50, "effects": { "brand_association": 15, "brand_awareness": 12, "brand_loyalty": 8 } },
+        { "id": "light_collab", "name": "轻度联名", "cost": 25, "effects": { "brand_association": 8, "brand_awareness": 6 } },
+        { "id": "refuse", "name": "拒绝", "effects": { "brand_awareness": -4 } }
+      ]
+    },
+    {
+      "id": "reputation_collapse",
+      "name": "口碑雪崩",
+      "type": "crisis",
+      "condition": { "brand_loyalty_gte": 60, "chance": 5, "risk_double_gte": 50 },
+      "condition_text": "品牌忠诚度>=60且近2回合未执行危机公关；基础概率每回合5%；若舆情风险>=50，则触发率翻倍",
+      "description": "由于发货延迟、客服态度或产品体验预期落差，社交平台出现大规模差评扩散。",
+      "options": [
+        { "id": "apology_compensation", "name": "诚恳道歉并赔偿", "cost": 25, "ap": 1, "effects": { "brand_loyalty": -10, "brand_awareness": -8 }, "risk": -30, "tags": ["sincere_brand"] },
+        { "id": "blame_supply_chain", "name": "甩锅供应链", "cost": 5, "effects": { "brand_loyalty": -25, "brand_awareness": -15 }, "risk": 10 },
+        { "id": "ignore", "name": "冷处理", "effects": { "brand_loyalty": -35, "brand_awareness": -20 }, "risk": 20 }
+      ]
+    },
+    {
+      "id": "breakthrough",
+      "name": "品牌破圈",
+      "type": "milestone",
+      "condition": { "brand_awareness_gte": 60, "brand_loyalty_gte": 50, "turn_min": 9, "turn_max": 16, "once": true },
+      "condition_text": "品牌知名度>=60且品牌忠诚度>=50，阶段处于第9-16回合；仅一次",
+      "description": "品牌获得主流媒体、平台热搜或大众舆论关注，进入真正的破圈节点。",
+      "options": [
+        { "id": "accept_traffic", "name": "全力承接流量", "cost": 30, "ap": 1, "effects": { "brand_awareness": 16, "brand_cognition": 5 }, "ongoing_expense": 8 },
+        { "id": "steady_ops", "name": "稳健运营", "cost": 10, "ap": 1, "effects": { "brand_awareness": 8, "brand_loyalty": 5 } },
+        { "id": "upgrade", "name": "借势升级", "cost": 50, "ap": 2, "effects": { "brand_association": 12, "brand_awareness": 10 }, "tags": ["high_end_line"] }
+      ]
+    },
+    {
+      "id": "aging_warning",
+      "name": "品牌老化预警",
+      "type": "milestone",
+      "condition": { "brand_association_gte": 70, "no_visual_design_turns_gte": 3, "turn_min": 17, "turn_max": 24, "once": true },
+      "condition_text": "品牌联想度>=70，且连续3回合未执行视觉设计类行动，阶段处于第17-24回合；仅一次",
+      "description": "年轻用户开始认为品牌审美老化，品牌面临代际形象危机。",
+      "options": [
+        { "id": "rebranding", "name": "年轻化rebranding", "cost": 60, "ap": 2, "effects": { "brand_association": 5, "brand_awareness": 12 } },
+        { "id": "cross_collab", "name": "跨界联名", "cost": 40, "ap": 1, "effects": { "brand_awareness": 8, "brand_loyalty": 5 } },
+        { "id": "hold_position", "name": "坚守原有定位", "effects": { "brand_loyalty": -8, "brand_awareness": -12 }, "tags": ["classic"] }
+      ]
+    },
+    {
+      "id": "capital_temptation",
+      "name": "资本的诱惑",
+      "type": "milestone",
+      "condition": { "funds_lte": 50, "brand_awareness_gte": 40, "chance": 5, "once": true },
+      "condition_text": "资金<=50且品牌知名度>=40；或品牌认知度>=60；概率每回合5%；仅一次",
+      "description": "投资机构提出对赌协议，以资金换取高速增长承诺。",
+      "options": [
+        { "id": "accept_bet", "name": "接受对赌", "funds": 200, "tags": ["capital_bet"] },
+        { "id": "refuse", "name": "拒绝" },
+        { "id": "negotiate", "name": "谈判降条件", "funds": 120, "tags": ["capital_bet_soft"] }
+      ]
+    },
+    {
+      "id": "position_crossroad",
+      "name": "十字路口",
+      "type": "milestone",
+      "condition": { "brand_cognition_gte": 50, "brand_association_gte": 50, "once": true },
+      "condition_text": "品牌认知度>=50且品牌联想度>=50，且未做出过定位选择；仅一次",
+      "description": "品牌进入中期，需要决定未来路线。",
+      "options": [
+        { "id": "premium", "name": "高端路线", "tags": ["premium_route"], "growth_modifiers": { "brand_association": 1.2, "brand_awareness": 0.9 }, "ongoing_expense": 5 },
+        { "id": "mass", "name": "亲民路线", "tags": ["mass_route"], "growth_modifiers": { "brand_awareness": 1.2, "brand_association": 0.9 }, "ongoing_expense": -3 },
+        { "id": "balanced", "name": "均衡发展" }
+      ]
+    },
+    {
+      "id": "hit_product",
+      "name": "爆品诞生",
+      "type": "milestone",
+      "condition": { "brand_cognition_gte": 70, "brand_association_gte": 65, "recent_rnd_and_marketing": true, "once": true },
+      "condition_text": "品牌认知度>=70、品牌联想度>=65，且近3回合执行过至少1次研发和1次营销；仅一次",
+      "description": "品牌某单品实现“产品力+传播力”双重突破，成为阶段性爆品。",
+      "options": [
+        { "id": "full_channel", "name": "全渠道放量", "cost": 30, "effects": { "channel_control": 10, "brand_awareness": 10 }, "income_multiplier_turns": 2, "income_multiplier": 1.2 },
+        { "id": "quality_first", "name": "稳住品质", "effects": { "brand_cognition": 8, "brand_loyalty": 6 } },
+        { "id": "limited", "name": "做限定款", "effects": { "brand_association": 10, "brand_awareness": 6 }, "funds": 20 }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "source": "详细玩法设计2.0.docx image3 and body text",
+  "balance": {
+    "income_multiplier": 2.15,
+    "action_effect_multiplier": 0.45,
+    "event_effect_multiplier": 0.55,
+    "base_expense": 12,
+    "attribute_maintenance_divisor": 28,
+    "minimum_expense": 12
+  },
+  "income_formula": {
+    "sales_index": "(brand_cognition * channel_control / 100) * (1 + brand_awareness / 100)",
+    "price_factor": "1 + brand_association / 200",
+    "repurchase_factor": "1 + brand_loyalty / 250",
+    "monthly_income": "round(sales_index * price_factor * repurchase_factor * balance.income_multiplier)"
+  },
+  "expense_formula": "base + stage_extra + scale_extra + ongoing_extra",
+  "base_expense": 12,
+  "stage_extra": {
+    "startup": 0,
+    "growth": 6,
+    "mature": 14
+  },
+  "scale_extra": {
+    "single_if_awareness_or_channel_gte_70": 5,
+    "additional_if_awareness_and_channel_gte_70": 4
+  },
+  "risk_decay": {
+    "base_per_turn": -4,
+    "loyalty_gte_70_extra": -2,
+    "repair_action_extra": -3,
+    "high_risk_blocks_extra_decay": true
+  },
+  "risk_bands": [
+    { "min": 0, "max": 19, "name": "安全区", "effect": "无额外惩罚" },
+    { "min": 20, "max": 39, "name": "警戒区", "crisis_chance_bonus": 2 },
+    { "min": 40, "max": 59, "name": "高压区", "crisis_chance_bonus": 5, "loyalty_decay_per_turn": 1, "kol_cost_extra": 5 },
+    { "min": 60, "max": 79, "name": "失控前夜", "crisis_chance_bonus": 10, "marketing_effect_multiplier": 0.85, "user_ops_effect_multiplier": 1.2 },
+    { "min": 80, "max": 100, "name": "崩塌区", "forced_crisis": true }
+  ]
+}

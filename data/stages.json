@@ -1,0 +1,33 @@
+{
+  "source": "详细玩法设计2.0.docx image4 and body text",
+  "stages": [
+    {
+      "id": "startup",
+      "name": "初创期",
+      "turn_min": 1,
+      "turn_max": 8,
+      "condition": "初始阶段",
+      "feature": "资源紧张，侧重打基础",
+      "intro": "一间不到20平的共享办公室。桌上堆着色卡、原料样品和半箱没拆完的快递。这个刚刚诞生的美妆品牌，要先活下来，被第一批人看见。"
+    },
+    {
+      "id": "growth",
+      "name": "成长期",
+      "turn_min": 9,
+      "turn_max": 16,
+      "condition": "任一核心属性 >= 50 且资金 >= 80",
+      "feature": "解锁高级经营行动，进入扩张期",
+      "intro": "办公室搬到了创意园区。粉丝从寥寥无几变成几万人，品牌开始被行业注意。"
+    },
+    {
+      "id": "mature",
+      "name": "成熟期",
+      "turn_min": 17,
+      "turn_max": 24,
+      "condition": "任一核心属性 >= 75 且资金 >= 150",
+      "feature": "解锁品牌延伸与资本运作类内容",
+      "intro": "落地窗，独立办公室。行业峰会的邀请函上，品牌名字印在演讲嘉宾一栏。"
+    }
+  ],
+  "major_sales_turns_in_cycle": [4, 6]
+}

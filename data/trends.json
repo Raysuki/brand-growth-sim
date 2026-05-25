@@ -1,0 +1,15 @@
+{
+  "source": "详细玩法设计2.0.docx image5 and body text",
+  "duration_turns": 3,
+  "forecast_action": "market_forecast",
+  "trends": [
+    { "id": "healthy_life", "name": "健康生活", "effect": "认知度相关行动效果×1.5", "attribute": "brand_cognition", "tags": ["ingredient_upgrade", "function_iteration"] },
+    { "id": "retro_china", "name": "国潮复古", "effect": "联想度相关行动效果×1.5", "attribute": "brand_association", "tags": ["logo_upgrade", "package_redesign"] },
+    { "id": "ai_intelligence", "name": "AI智能", "effect": "知名度相关行动效果×1.5", "attribute": "brand_awareness", "tags": ["ad_campaign", "social_seeding"] },
+    { "id": "looks_economy", "name": "颜值经济", "effect": "联想度+知名度效果×1.3", "attribute": "brand_association", "tags": ["visual_design"] },
+    { "id": "value_revolution", "name": "性价比革命", "effect": "渠道掌控力效果×1.5", "attribute": "channel_control", "tags": ["business_negotiation", "online_store"] },
+    { "id": "emotional_consumption", "name": "情感消费", "effect": "忠诚度效果×1.5", "attribute": "brand_loyalty", "tags": ["user_community", "customer_service"] },
+    { "id": "circle_culture", "name": "圈层文化", "effect": "小众渠道效果×2.0", "attribute": "channel_control", "tags": ["vertical_channel"] },
+    { "id": "sustainable_green", "name": "可持续环保", "effect": "认知度+忠诚度效果×1.3", "attribute": "dual", "tags": ["ingredient_upgrade", "self_audit"] }
+  ]
+}

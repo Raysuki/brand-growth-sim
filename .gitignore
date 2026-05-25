@@ -1,0 +1,20 @@
+# Godot generated cache
+.godot/
+
+# Exported builds
+build/
+dist/
+exports/
+*.exe
+*.app
+*.apk
+*.aab
+*.pck
+*.zip
+
+# OS/editor noise
+.DS_Store
+Thumbs.db
+*.tmp
+*.log
+
