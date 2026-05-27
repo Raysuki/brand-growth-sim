@@ -1,0 +1,141 @@
+[gd_scene format=3 uid="uid://do0kb2ahfrdpw"]
+
+[ext_resource type="Script" uid="uid://chjbo6m820ta5" path="res://scripts/BrandSetupScreen.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://du5af7rwu7cer" path="res://assets/backgrounds/初创期共享办公室.png" id="2_bg"]
+[ext_resource type="Texture2D" uid="uid://b2btwwyn7jhnl" path="res://assets/ui/event_card.png" id="3_card"]
+[ext_resource type="Texture2D" uid="uid://dedo6y1oxqopi" path="res://assets/ui/品牌命名素材.png" id="4_r2tko"]
+
+[node name="BrandSetupScreen" type="Control" unique_id=701121026]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_script")
+
+[node name="Background" type="TextureRect" parent="." unique_id=1248159382]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("2_bg")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Tint" type="ColorRect" parent="." unique_id=1438607744]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.3)
+
+[node name="CardPanel" type="NinePatchRect" parent="." unique_id=1372279518]
+layout_mode = 0
+offset_left = 165.0
+offset_top = 110.0
+offset_right = 1115.0
+offset_bottom = 610.0
+texture = ExtResource("3_card")
+patch_margin_left = 40
+patch_margin_top = 40
+patch_margin_right = 40
+patch_margin_bottom = 40
+
+[node name="HBox" type="HBoxContainer" parent="CardPanel" unique_id=1989046622]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 30.0
+offset_top = 30.0
+offset_right = -30.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="LeftMargin" type="MarginContainer" parent="CardPanel/HBox" unique_id=52974829]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.45
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Illustration" type="TextureRect" parent="CardPanel/HBox/LeftMargin" unique_id=446338777]
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("4_r2tko")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="RightMargin" type="MarginContainer" parent="CardPanel/HBox" unique_id=1709339915]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.55
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 30
+
+[node name="VBox" type="VBoxContainer" parent="CardPanel/HBox/RightMargin" unique_id=30567589]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="TextTop" type="Label" parent="CardPanel/HBox/RightMargin/VBox" unique_id=1684317506]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3, 0.22, 0.18, 1)
+theme_override_font_sizes/font_size = 25
+text = "你选择在美妆行业扎根
+
+品牌就叫做"
+autowrap_mode = 3
+
+[node name="InputRow" type="HBoxContainer" parent="CardPanel/HBox/RightMargin/VBox" unique_id=1361036782]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="BrandInput" type="LineEdit" parent="CardPanel/HBox/RightMargin/VBox/InputRow" unique_id=1013800931]
+custom_minimum_size = Vector2(240, 44)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.3, 0.22, 0.18, 1)
+theme_override_font_sizes/font_size = 20
+placeholder_text = "输入品牌名称"
+
+[node name="TextBottom" type="Label" parent="CardPanel/HBox/RightMargin/VBox" unique_id=728918075]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3, 0.22, 0.18, 1)
+theme_override_font_sizes/font_size = 20
+autowrap_mode = 3
+
+[node name="ConfirmButton" type="Button" parent="CardPanel/HBox/RightMargin/VBox" unique_id=1656111861]
+custom_minimum_size = Vector2(120, 48)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 20
+text = "确定"
+
+[node name="ClickHint" type="Label" parent="." unique_id=1315686093]
+visible = false
+layout_mode = 0
+offset_left = 500.0
+offset_top = 640.0
+offset_right = 780.0
+offset_bottom = 680.0
+theme_override_colors/font_color = Color(1, 1, 1, 0.6)
+theme_override_font_sizes/font_size = 18
+text = "点击任意位置继续..."
+horizontal_alignment = 1

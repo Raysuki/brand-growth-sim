@@ -3,13 +3,91 @@
   "duration_turns": 3,
   "forecast_action": "market_forecast",
   "trends": [
-    { "id": "healthy_life", "name": "健康生活", "effect": "认知度相关行动效果×1.5", "attribute": "brand_cognition", "tags": ["ingredient_upgrade", "function_iteration"] },
-    { "id": "retro_china", "name": "国潮复古", "effect": "联想度相关行动效果×1.5", "attribute": "brand_association", "tags": ["logo_upgrade", "package_redesign"] },
-    { "id": "ai_intelligence", "name": "AI智能", "effect": "知名度相关行动效果×1.5", "attribute": "brand_awareness", "tags": ["ad_campaign", "social_seeding"] },
-    { "id": "looks_economy", "name": "颜值经济", "effect": "联想度+知名度效果×1.3", "attribute": "brand_association", "tags": ["visual_design"] },
-    { "id": "value_revolution", "name": "性价比革命", "effect": "渠道掌控力效果×1.5", "attribute": "channel_control", "tags": ["business_negotiation", "online_store"] },
-    { "id": "emotional_consumption", "name": "情感消费", "effect": "忠诚度效果×1.5", "attribute": "brand_loyalty", "tags": ["user_community", "customer_service"] },
-    { "id": "circle_culture", "name": "圈层文化", "effect": "小众渠道效果×2.0", "attribute": "channel_control", "tags": ["vertical_channel"] },
-    { "id": "sustainable_green", "name": "可持续环保", "effect": "认知度+忠诚度效果×1.3", "attribute": "dual", "tags": ["ingredient_upgrade", "self_audit"] }
+    {
+      "id": "healthy_life",
+      "name": "健康生活",
+      "description": "《“健康大国6202”规划纲要》进入落地阶段，健康消费品纳入各地消费券补贴范围。带有“低脂”“无糖”“天然”标签的产品在内容平台获得算法加权，认知度相关行动效果提升至1.5倍。",
+      "effect": "认知度相关行动效果×1.5",
+      "attribute": "brand_cognition",
+      "tags": [
+        "ingredient_upgrade",
+        "function_iteration"
+      ]
+    },
+    {
+      "id": "retro_china",
+      "name": "国潮复古",
+      "description": "传统文化振兴工程第二批扶持名单公布，老字号联名与新中式设计可申请专项补贴。平台侧对含有非遗、传统工艺、国风元素的品牌给予流量倾斜，联想度相关行动效果提升至1.5倍。",
+      "effect": "联想度相关行动效果×1.5",
+      "attribute": "brand_association",
+      "tags": [
+        "logo_upgrade",
+        "package_redesign"
+      ]
+    },
+    {
+      "id": "ai_intelligence",
+      "name": "AI智能",
+      "description": "人工智能产业引导基金设立消费级赛道，智能硬件与AI美妆工具可申报创新产品目录。算法生成内容的推荐优先级上调，科技标签类目审核通道缩短，知名度相关行动效果提升至1.5倍。",
+      "effect": "知名度相关行动效果×1.5",
+      "attribute": "brand_awareness",
+      "tags": [
+        "ad_campaign",
+        "social_seeding"
+      ]
+    },
+    {
+      "id": "looks_economy",
+      "name": "颜值经济",
+      "description": "化妆品功效宣称新规过渡期结束，合规品牌的备案信息自动同步至各大电商后台。成分党与包装美学类内容的转化率提升，平台对“高颜值”标签的流量加权，使联想度与知名度相关行动效果提升至1.3倍。",
+      "effect": "联想度+知名度效果×1.3",
+      "attribute": "brand_association",
+      "tags": [
+        "visual_design"
+      ]
+    },
+    {
+      "id": "value_revolution",
+      "name": "性价比革命",
+      "description": "消费促进月叠加以旧换新政策，平台百亿补贴频道向平价优质品牌开放绿色通道。定价在50-150元区间的产品获得搜索排序加权，渠道掌控力相关行动效果提升至1.5倍。",
+      "effect": "渠道掌控力效果×1.5",
+      "attribute": "channel_control",
+      "tags": [
+        "business_negotiation",
+        "online_store"
+      ]
+    },
+    {
+      "id": "emotional_consumption",
+      "name": "情感消费",
+      "description": "多部门联合发文鼓励“情绪价值型消费”新业态，疗愈文创、仪式感礼盒等入选创新试点。平台上线“情感陪伴”专属类目，用户复购率与停留时长的关联权重提升，忠诚度相关行动效果提升至1.5倍。",
+      "effect": "忠诚度效果×1.5",
+      "attribute": "brand_loyalty",
+      "tags": [
+        "user_community",
+        "customer_service"
+      ]
+    },
+    {
+      "id": "circle_culture",
+      "name": "圈层文化",
+      "description": "数字经济重点方向中首次写入“社群经济”，垂直兴趣社区的商业化接口全面开放。小众品牌在圈层内的获客成本下降，粉丝裂变按人群包精准度放大，小众渠道相关行动效果提升至2.0倍。",
+      "effect": "小众渠道效果×2.0",
+      "attribute": "channel_control",
+      "tags": [
+        "vertical_channel"
+      ]
+    },
+    {
+      "id": "sustainable_green",
+      "name": "可持续环保",
+      "description": "“双碳”目标延伸至消费品全生命周期，环保材料与低碳包装可申请官方“绿色标识”。带有ESG认证的品牌在搜索结果页获得专属筛选入口，用户点击意愿增强，认知度与忠诚度相关行动效果提升至1.3倍。",
+      "effect": "认知度+忠诚度效果×1.3",
+      "attribute": "dual",
+      "tags": [
+        "ingredient_upgrade",
+        "self_audit"
+      ]
+    }
   ]
 }

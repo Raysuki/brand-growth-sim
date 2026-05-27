@@ -40,6 +40,7 @@ var recent_actions := []
 var action_log := []
 var event_log := []
 var turn_log := []
+var current_turn_spending := 0
 
 func reset(all_data: Dictionary) -> void:
 	var initial: Dictionary = all_data.get("attributes", {}).get("initial", {})
@@ -68,6 +69,7 @@ func reset(all_data: Dictionary) -> void:
 	recovered_from_low_valley = false
 	successful_collab_or_innovation_count = 0
 	high_risk_action_count = 0
+	current_turn_spending = 0
 	crisis_pr_recent_turns.clear()
 	recent_actions.clear()
 	action_log.clear()
@@ -77,6 +79,7 @@ func reset(all_data: Dictionary) -> void:
 
 func start_turn(all_data: Dictionary) -> void:
 	action_points = action_points_max
+	current_turn_spending = 0
 	_update_stage(all_data)
 	_update_trend(all_data)
 
@@ -107,7 +110,7 @@ func get_max_attribute() -> int:
 
 func clamp_attributes() -> void:
 	for attr in ATTRIBUTES:
-		attributes[attr] = clampi(int(attributes.get(attr, 0)), 0, 300)
+		attributes[attr] = clampi(int(attributes.get(attr, 0)), 0, 500)
 	public_risk = clampi(public_risk, 0, 100)
 
 func add_effects(effects: Dictionary, multiplier_value := 1.0) -> Dictionary:

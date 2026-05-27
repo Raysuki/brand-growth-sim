@@ -1,0 +1,178 @@
+[gd_scene format=3 uid="uid://ck7snlcamqwbp"]
+
+[ext_resource type="Script" uid="uid://d3lp0p55p3nfj" path="res://scripts/KnowledgePanel.gd" id="1_kp"]
+
+[sub_resource type="StyleBoxFlat" id="StylePanel"]
+bg_color = Color(1, 0.985, 0.955, 0.97)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.941176, 0.784314, 0.67451, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleCloseBtn"]
+bg_color = Color(1, 0.498, 0.596, 0.9)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+
+[sub_resource type="StyleBoxFlat" id="StyleDetail"]
+bg_color = Color(1, 0.99, 0.97, 0.98)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.9, 0.75, 0.65, 0.8)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+
+[sub_resource type="StyleBoxFlat" id="StyleDetailClose"]
+bg_color = Color(0.92, 0.85, 0.78, 0.9)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.85, 0.7, 0.6, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="KnowledgePanel" type="Control" unique_id=2073821020]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_kp")
+
+[node name="Dimmer" type="ColorRect" parent="." unique_id=922629029]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.35)
+
+[node name="Panel" type="PanelContainer" parent="." unique_id=741200712]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 60.0
+offset_right = 1200.0
+offset_bottom = 680.0
+theme_override_styles/panel = SubResource("StylePanel")
+
+[node name="Margin" type="MarginContainer" parent="Panel" unique_id=1150584021]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 16
+
+[node name="VBox" type="VBoxContainer" parent="Panel/Margin" unique_id=1770328027]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="TitleBar" type="HBoxContainer" parent="Panel/Margin/VBox" unique_id=479969496]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Panel/Margin/VBox/TitleBar" unique_id=452993141]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.302, 0.216, 0.176, 1)
+theme_override_font_sizes/font_size = 24
+text = "知识图鉴"
+
+[node name="CloseButton" type="Button" parent="Panel/Margin/VBox/TitleBar" unique_id=1701922881]
+custom_minimum_size = Vector2(36, 36)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("StyleCloseBtn")
+theme_override_styles/pressed = SubResource("StyleCloseBtn")
+theme_override_styles/hover = SubResource("StyleCloseBtn")
+text = "X"
+
+[node name="Content" type="HSplitContainer" parent="Panel/Margin/VBox" unique_id=338084362]
+layout_mode = 2
+size_flags_vertical = 3
+split_offsets = PackedInt32Array(160, 0)
+split_offset = 160
+
+[node name="CategoryScroll" type="ScrollContainer" parent="Panel/Margin/VBox/Content" unique_id=1403668773]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="CategoryList" type="VBoxContainer" parent="Panel/Margin/VBox/Content/CategoryScroll" unique_id=513229706]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+
+[node name="CardScroll" type="ScrollContainer" parent="Panel/Margin/VBox/Content" unique_id=1113573251]
+layout_mode = 2
+size_flags_horizontal = 3
+horizontal_scroll_mode = 0
+
+[node name="CardGrid" type="GridContainer" parent="Panel/Margin/VBox/Content/CardScroll" unique_id=1314000611]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/h_separation = 12
+theme_override_constants/v_separation = 12
+columns = 4
+
+[node name="DetailPanel" type="PanelContainer" parent="Panel/Margin/VBox/Content" unique_id=1652535817]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleDetail")
+
+[node name="DetailMargin" type="MarginContainer" parent="Panel/Margin/VBox/Content/DetailPanel" unique_id=775185756]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 16
+
+[node name="DetailBox" type="VBoxContainer" parent="Panel/Margin/VBox/Content/DetailPanel/DetailMargin" unique_id=440693797]
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="DetailTitle" type="Label" parent="Panel/Margin/VBox/Content/DetailPanel/DetailMargin/DetailBox" unique_id=1278454688]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.302, 0.216, 0.176, 1)
+theme_override_font_sizes/font_size = 22
+text = "知识标题"
+
+[node name="DetailBody" type="Label" parent="Panel/Margin/VBox/Content/DetailPanel/DetailMargin/DetailBox" unique_id=1785179456]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.352, 0.325, 0.384, 1)
+theme_override_font_sizes/font_size = 20
+text = "知识详情内容"
+autowrap_mode = 3
+
+[node name="DetailClose" type="Button" parent="Panel/Margin/VBox/Content/DetailPanel/DetailMargin/DetailBox" unique_id=723346136]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.302, 0.216, 0.176, 1)
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = SubResource("StyleDetailClose")
+theme_override_styles/pressed = SubResource("StyleDetailClose")
+theme_override_styles/hover = SubResource("StyleDetailClose")
+text = "返回"
+icon_alignment = 1

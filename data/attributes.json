@@ -1,6 +1,6 @@
 {
   "source": "详细玩法设计2.0.docx image1/image2 and body text",
-  "range": { "min": 0, "max": 300 },
+  "range": { "min": 0, "max": 500 },
   "initial": {
     "brand_awareness": 22,
     "brand_cognition": 28,

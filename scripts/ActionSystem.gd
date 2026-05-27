@@ -16,6 +16,7 @@ func execute(action: Dictionary, state, all_data: Dictionary) -> Dictionary:
 		return result
 
 	state.funds -= cost
+	state.current_turn_spending += cost
 	state.action_points -= ap
 	var multiplier_value := _effect_multiplier(action, state, all_data)
 	var applied: Dictionary = state.add_effects(action.get("effects", {}), multiplier_value)

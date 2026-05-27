@@ -31,7 +31,9 @@ func pick_event(state, all_data: Dictionary) -> Dictionary:
 func apply_option(event: Dictionary, option: Dictionary, state, all_data := {}) -> Dictionary:
 	var result := { "effects": {}, "message": "" }
 	if option.has("cost"):
-		state.funds -= int(option.get("cost", 0))
+		var cost := int(option.get("cost", 0))
+		state.funds -= cost
+		state.current_turn_spending += cost
 	if option.has("funds"):
 		state.funds += int(option.get("funds", 0))
 	if option.has("ap"):

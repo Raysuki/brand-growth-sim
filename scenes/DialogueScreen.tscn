@@ -1,0 +1,92 @@
+[gd_scene format=3 uid="uid://bl00sx3rsru7n"]
+
+[ext_resource type="Script" uid="uid://dfcc8le7t21vs" path="res://scripts/DialogueScreen.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://dp3mgdybeq56e" path="res://assets/backgrounds/原公司场景.png" id="2_bg"]
+[ext_resource type="Texture2D" uid="uid://cj25ng6asc6eh" path="res://assets/npcs/看板娘.png" id="3_mascot"]
+[ext_resource type="Texture2D" uid="uid://dpsgji50mc8ik" path="res://assets/npcs/主管.png" id="4_supervisor"]
+
+[sub_resource type="StyleBoxFlat" id="StyleDialogueBox"]
+bg_color = Color(0, 0, 0, 0.78)
+border_width_top = 2
+border_color = Color(1, 1, 1, 0.2)
+
+[node name="DialogueScreen" type="Control" unique_id=1321985601]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_script")
+
+[node name="Background" type="TextureRect" parent="." unique_id=1279488635]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 51.0
+offset_bottom = 57.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("2_bg")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Mascot" type="TextureRect" parent="." unique_id=1749747192]
+layout_mode = 0
+offset_left = -88.0
+offset_top = 97.0
+offset_right = 542.0
+offset_bottom = 1004.0
+mouse_filter = 2
+texture = ExtResource("3_mascot")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Supervisor" type="TextureRect" parent="." unique_id=1277250743]
+layout_mode = 0
+offset_left = 636.0
+offset_top = 58.0
+offset_right = 1491.0
+offset_bottom = 1168.0
+mouse_filter = 2
+texture = ExtResource("4_supervisor")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="DialogueBox" type="PanelContainer" parent="." unique_id=1886929487]
+layout_mode = 0
+offset_top = 580.0
+offset_right = 1280.0
+offset_bottom = 720.0
+theme_override_styles/panel = SubResource("StyleDialogueBox")
+
+[node name="MarginContainer" type="MarginContainer" parent="DialogueBox" unique_id=1584056839]
+layout_mode = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 16
+
+[node name="VBox" type="VBoxContainer" parent="DialogueBox/MarginContainer" unique_id=1110066442]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="NameLabel" type="Label" parent="DialogueBox" unique_id=1526922]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.6, 1)
+theme_override_font_sizes/font_size = 20
+
+[node name="TextLabel" type="Label" parent="DialogueBox" unique_id=1794337715]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 20
+autowrap_mode = 3
+
+[node name="ClickHint" type="Label" parent="DialogueBox" unique_id=2131806529]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 0.5)
+theme_override_font_sizes/font_size = 30
+text = "点击继续..."
+horizontal_alignment = 2

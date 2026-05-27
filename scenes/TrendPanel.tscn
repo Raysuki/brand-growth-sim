@@ -1,0 +1,207 @@
+[gd_scene format=3 uid="uid://bhg5ac7cqtv6r"]
+
+[ext_resource type="Script" path="res://scripts/TrendPanel.gd" id="1_trend"]
+
+[sub_resource type="StyleBoxFlat" id="StyleTileBg"]
+bg_color = Color(1, 1, 1, 0.86)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.8, 0.95, 0.9, 1)
+corner_radius_top_left = 18
+corner_radius_top_right = 18
+corner_radius_bottom_right = 18
+corner_radius_bottom_left = 18
+
+[sub_resource type="StyleBoxFlat" id="StyleTrendCard"]
+bg_color = Color(0.98, 0.82, 0.42, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.85, 0.6, 0.2, 1)
+corner_radius_top_left = 28
+corner_radius_top_right = 28
+corner_radius_bottom_right = 28
+corner_radius_bottom_left = 28
+shadow_color = Color(0.4, 0.25, 0.1, 0.25)
+shadow_size = 10
+shadow_offset = Vector2(0, 4)
+
+[sub_resource type="StyleBoxFlat" id="StyleTrendNamePill"]
+content_margin_left = 24.0
+content_margin_top = 8.0
+content_margin_right = 24.0
+content_margin_bottom = 8.0
+bg_color = Color(1, 1, 1, 0.92)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.9, 0.75, 0.5, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleTrendDescBox"]
+content_margin_left = 20.0
+content_margin_top = 16.0
+content_margin_right = 20.0
+content_margin_bottom = 16.0
+bg_color = Color(1, 1, 1, 0.95)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.55, 0.4, 0.7, 0.8)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleCloseBtn"]
+bg_color = Color(1, 1, 1, 0.86)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.8, 0.95, 0.9, 1)
+corner_radius_top_left = 18
+corner_radius_top_right = 18
+corner_radius_bottom_right = 18
+corner_radius_bottom_left = 18
+
+[node name="TrendPanel" type="Control" unique_id=2078412606]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_trend")
+
+[node name="SaleTile" type="PanelContainer" parent="." unique_id=1756369269]
+custom_minimum_size = Vector2(145, 78)
+layout_mode = 0
+offset_right = 145.0
+offset_bottom = 110.0
+theme_override_styles/panel = SubResource("StyleTileBg")
+
+[node name="SaleBox" type="VBoxContainer" parent="SaleTile" unique_id=1583050237]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="SaleName" type="Label" parent="SaleTile/SaleBox" unique_id=816800784]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.302, 0.216, 0.176, 1)
+theme_override_font_sizes/font_size = 12
+text = "风口"
+horizontal_alignment = 1
+
+[node name="SaleValue" type="Label" parent="SaleTile/SaleBox" unique_id=945608329]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.302, 0.216, 0.176, 1)
+theme_override_font_sizes/font_size = 18
+text = "健康生活
+×1.5"
+horizontal_alignment = 1
+
+[node name="SaleButton" type="Button" parent="." unique_id=396921812]
+unique_name_in_owner = true
+z_index = 6
+layout_mode = 0
+offset_right = 145.0
+offset_bottom = 110.0
+tooltip_text = "点击查看风口详情"
+flat = true
+
+[node name="TrendCardPanel" type="PanelContainer" parent="." unique_id=549521415]
+unique_name_in_owner = true
+visible = false
+z_index = 22
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -220.0
+offset_right = 300.0
+offset_bottom = 220.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleTrendCard")
+
+[node name="TrendCardMargin" type="MarginContainer" parent="TrendCardPanel" unique_id=1775432424]
+layout_mode = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 30
+
+[node name="TrendCardBox" type="VBoxContainer" parent="TrendCardPanel/TrendCardMargin" unique_id=850563224]
+layout_mode = 2
+theme_override_constants/separation = 18
+alignment = 1
+
+[node name="TrendCardNamePanel" type="PanelContainer" parent="TrendCardPanel/TrendCardMargin/TrendCardBox" unique_id=1237891853]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/panel = SubResource("StyleTrendNamePill")
+
+[node name="TrendCardName" type="Label" parent="TrendCardPanel/TrendCardMargin/TrendCardBox/TrendCardNamePanel" unique_id=1972798337]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3, 0.15, 0.05, 1)
+theme_override_font_sizes/font_size = 32
+text = "健康生活"
+horizontal_alignment = 1
+
+[node name="TrendCardDescPanel" type="PanelContainer" parent="TrendCardPanel/TrendCardMargin/TrendCardBox" unique_id=2135188931]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleTrendDescBox")
+
+[node name="TrendCardDesc" type="Label" parent="TrendCardPanel/TrendCardMargin/TrendCardBox/TrendCardDescPanel" unique_id=1129756485]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.25, 0.2, 0.35, 1)
+theme_override_font_sizes/font_size = 18
+text = "触发联动行动：原料升级、功能迭代"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="TrendCardAttr" type="Label" parent="TrendCardPanel/TrendCardMargin/TrendCardBox" unique_id=290261339]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.35, 0.2, 0.1, 1)
+theme_override_font_sizes/font_size = 16
+text = "关联属性：品牌认知度"
+horizontal_alignment = 1
+
+[node name="TrendCardEffect" type="Label" parent="TrendCardPanel/TrendCardMargin/TrendCardBox" unique_id=104251677]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.2, 0.1, 1)
+theme_override_font_sizes/font_size = 22
+text = "认知度相关行动效果×1.5"
+horizontal_alignment = 1
+
+[node name="TrendCardClose" type="Button" parent="TrendCardPanel/TrendCardMargin/TrendCardBox" unique_id=1380195487]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(120, 42)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.3, 0.15, 0.05, 1)
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleCloseBtn")
+theme_override_styles/pressed = SubResource("StyleCloseBtn")
+theme_override_styles/hover = SubResource("StyleCloseBtn")
+text = "关闭"

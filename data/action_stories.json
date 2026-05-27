@@ -1,0 +1,120 @@
+{
+  "stories": {
+    "consumer_interview": {
+      "text": "市场部小划与多位消费者进行了深度访谈，需求画像更加清晰完整了",
+      "npc": "市场部小划"
+    },
+    "competitor_breakdown": {
+      "text": "竞品核心参数全部整理完毕，差异化优势更加清晰明确",
+      "npc": "市场部小划"
+    },
+    "market_forecast": {
+      "text": "仔细研读了最新的行业趋势报告，为后续决策提供了新依据",
+      "npc": "市场部小划"
+    },
+    "data_mining": {
+      "text": "从过往订单数据中成功提取出高潜复购人群的特征模型",
+      "npc": "市场部小划"
+    },
+    "function_iteration": {
+      "text": "针对用户最集中反馈的痛点，优化了交互模块的功能",
+      "npc": "研发部小牌"
+    },
+    "tech_breakthrough": {
+      "text": "终于突破核心配方的技术瓶颈，顺利通过验证中试环节",
+      "npc": "研发部小牌"
+    },
+    "ingredient_upgrade": {
+      "text": "关键原料完成升级，产品品质大幅提升和稳定",
+      "npc": "研发部小牌"
+    },
+    "product_line_extension": {
+      "text": "新增SKU的产品规划敲定，并且收到了研发部小牌提交的最新方案",
+      "npc": "研发部小牌"
+    },
+    "logo_upgrade": {
+      "text": "设计部小计设计了绝妙的新logo，整体视觉识别度有了明显提升",
+      "npc": "设计部小计"
+    },
+    "package_redesign": {
+      "text": "货架测试结果显示，新包装的辨识度比旧版提高了",
+      "npc": "设计部小计"
+    },
+    "visual_standard": {
+      "text": "品牌VI手册已正式交付，后续全渠道视觉将实现统一管理",
+      "npc": "设计部小计"
+    },
+    "ip_design": {
+      "text": "品牌的虚拟形象设计定稿，图形商标注册申请通过了",
+      "npc": "设计部小计"
+    },
+    "social_seeding": {
+      "text": "适量投放了社媒暗广，自然流量稳步回升",
+      "npc": "运营部小品"
+    },
+    "ad_campaign": {
+      "text": "广告投放模型平稳跑通，每日ROI目标达成",
+      "npc": "运营部小品"
+    },
+    "controversial_marketing": {
+      "text": "借势竞品的争议话题进行碰瓷营销，品牌流量短期冲高",
+      "npc": "运营部小品"
+    },
+    "kol_collaboration": {
+      "text": "与头部垂类博主达成合作，曝光大幅增加",
+      "npc": "运营部小品"
+    },
+    "event_marketing": {
+      "text": "策划的话题成功登上同城热搜，小火一把",
+      "npc": "运营部小品"
+    },
+    "online_store": {
+      "text": "线上旗舰店上新完成，顺利成交今日订单",
+      "npc": "运营部小品"
+    },
+    "business_negotiation": {
+      "text": "与采购方成功达成扣点协议，账期顺利缩短",
+      "npc": "主管"
+    },
+    "offline_distribution": {
+      "text": "新增线下合作门店和直营门店，缩小了与消费者的距离",
+      "npc": "主管"
+    },
+    "vertical_channel": {
+      "text": "成功入驻了小众垂直平台，品牌在垂直领域的渠道布局更进一步",
+      "npc": "运营部小品"
+    },
+    "community_ops": {
+      "text": "社群运营小有成效，社群规模和活跃度明显提升",
+      "npc": "运营部小品"
+    },
+    "membership_system": {
+      "text": "会员积分新玩法正式上线，老客户的复购率上升",
+      "npc": "运营部小品"
+    },
+    "customer_service": {
+      "text": "整查运营客服评价系统，优化获投诉和差评多的客服",
+      "npc": "运营部小品"
+    },
+    "user_co_creation": {
+      "text": "发布新一期社媒用户共创大赛，共创用户共分激励奖金池",
+      "npc": "运营部小品"
+    },
+    "sincere_apology": {
+      "text": "发布了诚恳的致歉信，舆情负面声量开始逐步回落",
+      "npc": "主管"
+    },
+    "self_audit": {
+      "text": "自查问题环节全面梳理，相应的整改方案开始执行",
+      "npc": "主管"
+    },
+    "paid_astroturfing": {
+      "text": "消费者对水军评论产生了一点怀疑，品牌信誉产生隐忧",
+      "npc": "运营部小品"
+    },
+    "media_briefing": {
+      "text": "通过媒体沟通会澄清了事实，核心媒体风向转变",
+      "npc": "主管"
+    }
+  }
+}

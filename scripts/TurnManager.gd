@@ -45,9 +45,12 @@ func calculate_expense(state, all_data: Dictionary) -> int:
 
 func finish_turn(state, all_data: Dictionary) -> Dictionary:
 	var income := calculate_income(state, all_data)
-	var expense := calculate_expense(state, all_data)
+	var operating_expense := calculate_expense(state, all_data)
+	var spending := int(state.current_turn_spending)
+	var expense := operating_expense + spending
+	var operating_profit := income - operating_expense
 	var profit := income - expense
-	state.funds += profit
+	state.funds += operating_profit
 	state.cumulative_profit += profit
 	_apply_risk_decay(state, all_data)
 	state.clamp_attributes()
@@ -63,6 +66,8 @@ func finish_turn(state, all_data: Dictionary) -> Dictionary:
 		"turn": state.current_turn,
 		"income": income,
 		"expense": expense,
+		"operating_expense": operating_expense,
+		"spending": spending,
 		"profit": profit,
 		"funds": state.funds,
 		"risk": state.public_risk

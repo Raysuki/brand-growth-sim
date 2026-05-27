@@ -1,0 +1,82 @@
+[gd_scene format=3 uid="uid://dcprew7usj2gx"]
+
+[ext_resource type="Texture2D" uid="uid://vrbgi6v2381w" path="res://assets/icons/游戏名logo.png" id="1_logo"]
+[ext_resource type="Texture2D" uid="uid://cj25ng6asc6eh" path="res://assets/npcs/看板娘.png" id="2_mascot"]
+[ext_resource type="Texture2D" uid="uid://cnlnyi5ntbw02" path="res://assets/backgrounds/游戏按键与背景图设计.png" id="3_bg"]
+[ext_resource type="Script" uid="uid://d0n7kdipxwhf4" path="res://scripts/StartScreen.gd" id="4_script"]
+
+[node name="StartScreen" type="Control" unique_id=833841576]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_script")
+
+[node name="Background" type="TextureRect" parent="." unique_id=711948738]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 48.0
+offset_bottom = 57.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("3_bg")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Mascot" type="TextureRect" parent="." unique_id=1556530371]
+layout_mode = 0
+offset_left = 370.0
+offset_top = 47.0
+offset_right = 1457.0
+offset_bottom = 1106.0
+mouse_filter = 2
+texture = ExtResource("2_mascot")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Logo" type="TextureRect" parent="." unique_id=152838169]
+layout_mode = 0
+offset_left = 76.0
+offset_top = 51.0
+offset_right = 702.0
+offset_bottom = 283.0
+mouse_filter = 2
+texture = ExtResource("1_logo")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ButtonContainer" type="VBoxContainer" parent="." unique_id=1814031192]
+layout_mode = 0
+offset_left = 120.0
+offset_top = 320.0
+offset_right = 480.0
+offset_bottom = 600.0
+theme_override_constants/separation = 30
+
+[node name="StartButton" type="Button" parent="ButtonContainer" unique_id=441061902]
+custom_minimum_size = Vector2(280, 70)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.875, 0.875, 0.875, 1)
+theme_override_colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
+theme_override_font_sizes/font_size = 32
+text = "开始游戏"
+
+[node name="LoadButton" type="Button" parent="ButtonContainer" unique_id=1145218070]
+custom_minimum_size = Vector2(280, 70)
+layout_mode = 2
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_focus_color = Color(0.9411765, 0.32941177, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "读取存档"
+
+[node name="ExitButton" type="Button" parent="ButtonContainer" unique_id=596797144]
+custom_minimum_size = Vector2(280, 70)
+layout_mode = 2
+theme_override_colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
+theme_override_font_sizes/font_size = 32
+text = "关闭游戏"
