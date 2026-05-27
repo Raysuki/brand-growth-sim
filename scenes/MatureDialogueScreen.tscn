@@ -1,0 +1,110 @@
+[gd_scene format=3 uid="uid://we8s3dnagkyu"]
+
+[ext_resource type="Script" path="res://scripts/MatureDialogueScreen.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://bpfwpk7tvwufv" path="res://assets/npcs/路人甲.png" id="2_passerby"]
+[ext_resource type="Texture2D" uid="uid://cj25ng6asc6eh" path="res://assets/npcs/看板娘.png" id="3_mascot"]
+
+[sub_resource type="StyleBoxFlat" id="StyleDialogueBox"]
+bg_color = Color(0, 0, 0, 0.78)
+border_width_top = 2
+border_color = Color(1, 1, 1, 0.22)
+
+[node name="MatureDialogueScreen" type="Control" unique_id=1187415485]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_script")
+
+[node name="Background" type="TextureRect" parent="." unique_id=1660673481]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Dimmer" type="ColorRect" parent="." unique_id=834421538]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.18)
+
+[node name="Spotlight" type="ColorRect" parent="." unique_id=1146000027]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 0.9, 0.64, 0.12)
+
+[node name="PasserbyAvatar" type="TextureRect" parent="." unique_id=1919101162]
+layout_mode = 0
+offset_left = -27.0
+offset_top = 56.0
+offset_right = 694.0
+offset_bottom = 850.0
+mouse_filter = 2
+texture = ExtResource("2_passerby")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="MascotAvatar" type="TextureRect" parent="." unique_id=929824439]
+layout_mode = 0
+offset_left = 658.0
+offset_top = 98.0
+offset_right = 1275.0
+offset_bottom = 795.0
+mouse_filter = 2
+texture = ExtResource("3_mascot")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="DialogueBox" type="PanelContainer" parent="." unique_id=1151536366]
+layout_mode = 0
+offset_top = 552.0
+offset_right = 1280.0
+offset_bottom = 720.0
+theme_override_styles/panel = SubResource("StyleDialogueBox")
+
+[node name="Margin" type="MarginContainer" parent="DialogueBox" unique_id=1233458015]
+layout_mode = 2
+theme_override_constants/margin_left = 28
+theme_override_constants/margin_top = 18
+theme_override_constants/margin_right = 28
+theme_override_constants/margin_bottom = 16
+
+[node name="VBox" type="VBoxContainer" parent="DialogueBox/Margin" unique_id=1960334339]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="NameLabel" type="Label" parent="DialogueBox/Margin/VBox" unique_id=1611037337]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.6, 1)
+theme_override_font_sizes/font_size = 22
+
+[node name="TextLabel" type="Label" parent="DialogueBox/Margin/VBox" unique_id=495507785]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 24
+autowrap_mode = 3
+
+[node name="HintLabel" type="Label" parent="DialogueBox/Margin/VBox" unique_id=755412296]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 0.55)
+theme_override_font_sizes/font_size = 18
+text = "点击继续..."
+horizontal_alignment = 2

@@ -7,6 +7,9 @@ const ActionSystemClass := preload("res://scripts/ActionSystem.gd")
 const TurnManagerClass := preload("res://scripts/TurnManager.gd")
 const EventSystemClass := preload("res://scripts/EventSystem.gd")
 const EndingSystemClass := preload("res://scripts/EndingSystem.gd")
+const KnowledgeDataClass := preload("res://scripts/KnowledgeData.gd")
+const GrowthDialogueScreenScene := preload("res://scenes/GrowthDialogueScreen.tscn")
+const MatureDialogueScreenScene := preload("res://scenes/MatureDialogueScreen.tscn")
 
 const ICON_PATHS := {
 	"brand_awareness": "res://assets/icons/icon_awareness.png",
@@ -118,6 +121,35 @@ const NPC_PATHS := {
 	"主管": "res://assets/npcs/主管.png"
 }
 
+const KNOWLEDGE_ACTION_DROPS := {
+	"event_marketing": [{"category": "marketing_theories", "name": "IMC整合营销"}],
+	"ad_campaign": [{"category": "ad_types", "name": "程序化广告"}],
+	"online_store": [{"category": "ad_types", "name": "搜索广告"}],
+	"social_seeding": [{"category": "ad_types", "name": "社交媒体广告"}],
+	"kol_collaboration": [{"category": "marketing_theories", "name": "AIDA法则"}],
+	"community_ops": [{"category": "marketing_theories", "name": "4C营销理论"}],
+	"business_negotiation": [{"category": "platform_terms", "name": "SSP"}],
+	"market_forecast": [{"category": "platform_terms", "name": "DMP"}]
+}
+
+const KNOWLEDGE_EVENT_DROPS := {
+	"organic_miracle": [{"category": "ad_types", "name": "信息流广告"}],
+	"platform_tailwind": [{"category": "platform_terms", "name": "ADX"}, {"category": "platform_terms", "name": "RTB"}],
+	"divine_connection": [{"category": "marketing_theories", "name": "USP理论"}],
+	"breakthrough": [{"category": "effect_terms", "name": "ROI"}],
+	"capital_temptation": [{"category": "pricing_terms", "name": "VCG"}],
+	"position_crossroad": [{"category": "marketing_theories", "name": "4P营销理论"}],
+	"hit_product": [{"category": "effect_terms", "name": "ARPU"}],
+	"reputation_collapse": [{"category": "effect_terms", "name": "CVR"}]
+}
+
+const KNOWLEDGE_TURN_DROPS := [
+	{"turn": 6, "category": "basic_terms", "name": "CTR"},
+	{"turn": 12, "category": "basic_terms", "name": "CPC"},
+	{"turn": 18, "category": "basic_terms", "name": "CPM"},
+	{"turn": 24, "category": "basic_terms", "name": "eCPM"}
+]
+
 var loader := DataLoaderClass.new()
 var all_data := {}
 var state := GameStateClass.new()
@@ -135,6 +167,10 @@ var action_stories := {}
 var story_card_panel: PanelContainer = null
 var story_card_queue: Array = []
 var _story_finish_prefix := ""
+var knowledge_popup: PanelContainer = null
+var knowledge_popup_queue: Array = []
+var growth_dialogue_screen: Control = null
+var mature_dialogue_screen: Control = null
 
 @onready var background_rect: TextureRect = %Background
 @onready var mascot_rect: TextureRect = %Mascot
@@ -144,7 +180,8 @@ var _story_finish_prefix := ""
 @onready var stage_panel: PanelContainer = get_node_or_null("StagePanel") as PanelContainer
 @onready var resource_panel: PanelContainer = get_node_or_null("ResourcePanel") as PanelContainer
 @onready var attribute_panel: PanelContainer = $AttributePanel
-@onready var right_panel: PanelContainer = $RightPanel
+@onready var action_panel_root: Control = $ActionPlanPanel
+@onready var right_panel: PanelContainer = $ActionPlanPanel/RightPanel
 @onready var stage_name_label: Label = %StageNameLabel
 @onready var stage_turn_label: Label = %StageTurnLabel
 @onready var funds_label: Label = %FundsValue
@@ -152,14 +189,16 @@ var _story_finish_prefix := ""
 @onready var risk_label: Label = %RiskValue
 @onready var attribute_list: VBoxContainer = %AttributeList
 @onready var log_label: RichTextLabel = %LogLabel
-@onready var action_screen_shade: ColorRect = %ActionScreenShade
-@onready var action_scroll: ScrollContainer = %ActionScroll
-@onready var category_list: HBoxContainer = %CategoryList
-@onready var action_list: VBoxContainer = %ActionList
-@onready var plan_label: Label = %PlanLabel
-@onready var plan_panel: PanelContainer = %PlanPanel
-@onready var finish_button: Button = %FinishTurnButton
-@onready var clear_button: Button = %ClearPlanButton
+@onready var action_screen_shade: ColorRect = $ActionPlanPanel/ActionScreenShade
+@onready var action_title: Label = $ActionPlanPanel/ActionTitle
+@onready var category_scroll: ScrollContainer = $ActionPlanPanel/CategoryScroll
+@onready var action_scroll: ScrollContainer = $ActionPlanPanel/ActionScroll
+@onready var category_list: HBoxContainer = $ActionPlanPanel/CategoryScroll/CategoryList
+@onready var action_list: VBoxContainer = $ActionPlanPanel/ActionScroll/ActionList
+@onready var plan_label: Label = $ActionPlanPanel/PlanLabel
+@onready var plan_panel: PanelContainer = $ActionPlanPanel/PlanPanel
+@onready var finish_button: Button = $ActionPlanPanel/FinishTurnButton
+@onready var clear_button: Button = $ActionPlanPanel/ClearPlanButton
 @onready var event_panel: Control = %EventPanel
 @onready var event_title: Label = %EventTitle
 @onready var event_body: Label = %EventBody
@@ -178,8 +217,8 @@ var _story_finish_prefix := ""
 @onready var trend_card_effect: Label = %TrendCardEffect
 @onready var trend_card_close: Button = %TrendCardClose
 @onready var trend_card_attr: Label = %TrendCardAttr
-@onready var action_open_button: Button = %ActionOpenButton
-@onready var action_close_button: Button = %ActionCloseButton
+@onready var action_open_button: Button = $ActionPlanPanel/ActionOpenButton
+@onready var action_close_button: Button = $ActionPlanPanel/ActionCloseButton
 
 func _ready() -> void:
 	all_data = loader.load_all()
@@ -188,6 +227,8 @@ func _ready() -> void:
 	_bind_static_nodes()
 	_build_attribute_rows()
 	_build_story_card()
+	_build_knowledge_popup()
+	_unlock_knowledge_for_turn(state.current_turn)
 	_refresh_ui("选择行动后，点击结束回合。")
 
 func _bind_static_nodes() -> void:
@@ -204,6 +245,7 @@ func _bind_static_nodes() -> void:
 	if restart_texture != null:
 		restart_button.icon = restart_texture
 	restart_button.expand_icon = true
+	action_panel_root.visible = true
 	finish_button.text = ""
 	var finish_texture := _tex(END_TURN_IMAGE_PATH)
 	if finish_texture != null:
@@ -233,6 +275,8 @@ func _bind_static_nodes() -> void:
 	event_panel.visible = false
 	ending_panel.visible = false
 	knowledge_panel.visible = false
+	if knowledge_panel.has_method("set_unlocked_knowledge"):
+		knowledge_panel.call("set_unlocked_knowledge", state.acquired_knowledge)
 	trend_card_panel.visible = false
 	_set_action_panel_visible(false)
 	previous_trend_id = str(state.current_trend.get("id", ""))
@@ -277,8 +321,8 @@ func _apply_layering() -> void:
 	trend_card_panel.z_index = 22
 	action_screen_shade.z_index = 17
 	right_panel.z_index = 18
-	get_node("ActionTitle").z_index = 19
-	get_node("CategoryScroll").z_index = 19
+	action_title.z_index = 19
+	category_scroll.z_index = 19
 	action_scroll.z_index = 19
 	plan_panel.z_index = 19
 	plan_label.z_index = 19
@@ -414,11 +458,11 @@ func _rebuild_categories() -> void:
 		var btn := Button.new()
 		btn.text = ""
 		btn.tooltip_text = str(category.get("name", id))
-		btn.icon = _scaled_tex(str(CATEGORY_ICON_PATHS.get(id, ICON_PATHS.get(_category_icon_id(id), ""))), 72)
+		btn.icon = _scaled_tex(str(CATEGORY_ICON_PATHS.get(id, ICON_PATHS.get(_category_icon_id(id), ""))), 64)
 		btn.icon_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		btn.vertical_icon_alignment = VERTICAL_ALIGNMENT_CENTER
 		btn.expand_icon = false
-		btn.custom_minimum_size = Vector2(108, 92)
+		btn.custom_minimum_size = Vector2(96, 82)
 		btn.clip_text = true
 		btn.add_theme_font_size_override("font_size", 1)
 		_apply_button_text_colors(btn)
@@ -562,6 +606,7 @@ func _on_finish_turn() -> void:
 		if bool(result.get("ok", false)):
 			executed.append(str(action.get("name", "")))
 			executed_actions.append(action.duplicate(true))
+			_unlock_knowledge_for_action(action)
 	planned_actions.clear()
 	_story_finish_prefix = "已执行：%s" % (", ".join(executed) if not executed.is_empty() else "无")
 	if executed_actions.is_empty():
@@ -573,11 +618,15 @@ func _on_finish_turn() -> void:
 	_show_story_card(executed_actions[0], state.current_turn)
 
 func _finish_turn_after_events(prefix := "") -> void:
+	var previous_stage_id := state.stage_id
 	var summary := turn_manager.finish_turn(state, all_data)
+	_unlock_knowledge_for_turn(int(summary.get("turn", 0)))
 	var text := "回合结算：收入 %d，总开销 %d，净利润 %+d。" % [summary.get("income", 0), summary.get("expense", 0), summary.get("profit", 0)]
 	if int(summary.get("spending", 0)) > 0:
 		text += " 其中行动/事件花费 %d。" % summary.get("spending", 0)
 	_refresh_ui("%s  %s" % [prefix, text])
+	_maybe_show_growth_dialogue(previous_stage_id)
+	_maybe_show_mature_dialogue(previous_stage_id)
 
 func _show_event(event: Dictionary) -> void:
 	event_panel.visible = true
@@ -595,6 +644,7 @@ func _on_event_option(event: Dictionary, option: Dictionary) -> void:
 	if Engine.is_editor_hint():
 		return
 	var result := event_system.apply_option(event, option, state, all_data)
+	_unlock_knowledge_for_event(event)
 	event_panel.visible = false
 	_finish_turn_after_events(result.get("message", ""))
 
@@ -624,8 +674,20 @@ func _on_restart() -> void:
 		return
 	ending_panel.visible = false
 	event_panel.visible = false
+	knowledge_popup_queue.clear()
+	if knowledge_popup != null:
+		knowledge_popup.visible = false
+	if growth_dialogue_screen != null:
+		growth_dialogue_screen.queue_free()
+		growth_dialogue_screen = null
+	if mature_dialogue_screen != null:
+		mature_dialogue_screen.queue_free()
+		mature_dialogue_screen = null
 	planned_actions.clear()
 	state.reset(all_data)
+	_unlock_knowledge_for_turn(state.current_turn)
+	if knowledge_panel.has_method("set_unlocked_knowledge"):
+		knowledge_panel.call("set_unlocked_knowledge", state.acquired_knowledge)
 	_refresh_ui("已重新开始。")
 
 func _on_close_ending() -> void:
@@ -645,8 +707,8 @@ func _on_action_close() -> void:
 func _set_action_panel_visible(visible_flag: bool) -> void:
 	action_screen_shade.visible = visible_flag
 	right_panel.visible = visible_flag
-	get_node("ActionTitle").visible = visible_flag
-	get_node("CategoryScroll").visible = visible_flag
+	action_title.visible = visible_flag
+	category_scroll.visible = visible_flag
 	category_list.visible = visible_flag
 	action_scroll.visible = visible_flag
 	action_list.visible = visible_flag
@@ -868,6 +930,158 @@ func _tex(path: String) -> Texture2D:
 		push_warning("Unable to load texture: %s" % path)
 		return null
 	return ImageTexture.create_from_image(image)
+
+func _unlock_knowledge_for_action(action: Dictionary) -> void:
+	var action_id := str(action.get("id", ""))
+	for drop in KNOWLEDGE_ACTION_DROPS.get(action_id, []):
+		_unlock_knowledge(drop, "行动掉落")
+
+func _unlock_knowledge_for_event(event: Dictionary) -> void:
+	var event_id := str(event.get("id", ""))
+	for drop in KNOWLEDGE_EVENT_DROPS.get(event_id, []):
+		_unlock_knowledge(drop, "事件掉落")
+
+func _unlock_knowledge_for_turn(turn_number: int) -> void:
+	for drop in KNOWLEDGE_TURN_DROPS:
+		if int(drop.get("turn", 0)) == turn_number:
+			_unlock_knowledge(drop, "回合掉落")
+
+func _unlock_knowledge(drop: Dictionary, source: String) -> void:
+	var category_id := str(drop.get("category", ""))
+	var item_name := str(drop.get("name", ""))
+	var item := KnowledgeDataClass.get_item(category_id, item_name)
+	if item.is_empty():
+		push_warning("Knowledge drop not found: %s / %s" % [category_id, item_name])
+		return
+	var knowledge_id := str(item.get("knowledge_id", KnowledgeDataClass.make_id(category_id, item_name)))
+	if bool(state.acquired_knowledge.get(knowledge_id, false)):
+		return
+	state.acquired_knowledge[knowledge_id] = true
+	if knowledge_panel != null and knowledge_panel.has_method("reveal_knowledge"):
+		knowledge_panel.call("reveal_knowledge", knowledge_id)
+	item["drop_source"] = source
+	_queue_knowledge_popup(item)
+
+func _queue_knowledge_popup(item: Dictionary) -> void:
+	knowledge_popup_queue.append(item)
+	if knowledge_popup == null or not knowledge_popup.visible:
+		_show_next_knowledge_popup()
+
+func _show_next_knowledge_popup() -> void:
+	if knowledge_popup == null or knowledge_popup_queue.is_empty():
+		return
+	var item: Dictionary = knowledge_popup_queue.pop_front()
+	var title_node := knowledge_popup.find_child("KnowledgePopupTitle", true, false)
+	if title_node is Label:
+		title_node.text = "获得知识：%s" % item.get("name", "")
+	var source_node := knowledge_popup.find_child("KnowledgePopupSource", true, false)
+	if source_node is Label:
+		source_node.text = str(item.get("drop_source", "知识掉落"))
+	var body_node := knowledge_popup.find_child("KnowledgePopupBody", true, false)
+	if body_node is Label:
+		body_node.text = "%s\n\n%s" % [item.get("summary", ""), item.get("detail", "")]
+	knowledge_popup.visible = true
+	knowledge_popup.modulate.a = 0.0
+	var tween := create_tween()
+	tween.tween_property(knowledge_popup, "modulate:a", 1.0, 0.2)
+
+func _on_knowledge_popup_close() -> void:
+	if knowledge_popup == null:
+		return
+	knowledge_popup.visible = false
+	_show_next_knowledge_popup()
+
+func _build_knowledge_popup() -> void:
+	knowledge_popup = PanelContainer.new()
+	knowledge_popup.name = "KnowledgeDropPopup"
+	knowledge_popup.visible = false
+	knowledge_popup.z_index = 35
+	knowledge_popup.offset_left = 330.0
+	knowledge_popup.offset_top = 160.0
+	knowledge_popup.offset_right = 950.0
+	knowledge_popup.offset_bottom = 560.0
+	knowledge_popup.add_theme_stylebox_override("panel", _flat_style(Color(1, 0.985, 0.955, 0.98), Color("#f0c8ac"), 20, 3))
+	add_child(knowledge_popup)
+
+	var margin := MarginContainer.new()
+	margin.add_theme_constant_override("margin_left", 32)
+	margin.add_theme_constant_override("margin_top", 26)
+	margin.add_theme_constant_override("margin_right", 32)
+	margin.add_theme_constant_override("margin_bottom", 26)
+	knowledge_popup.add_child(margin)
+
+	var vbox := VBoxContainer.new()
+	vbox.add_theme_constant_override("separation", 14)
+	margin.add_child(vbox)
+
+	var title := Label.new()
+	title.name = "KnowledgePopupTitle"
+	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	title.add_theme_font_size_override("font_size", 28)
+	title.add_theme_color_override("font_color", Color("#4d372d"))
+	vbox.add_child(title)
+
+	var source := Label.new()
+	source.name = "KnowledgePopupSource"
+	source.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	source.add_theme_font_size_override("font_size", 16)
+	source.add_theme_color_override("font_color", Color("#9a6a54"))
+	vbox.add_child(source)
+
+	var body := Label.new()
+	body.name = "KnowledgePopupBody"
+	body.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	body.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	body.add_theme_font_size_override("font_size", 18)
+	body.add_theme_color_override("font_color", Color("#4d372d"))
+	vbox.add_child(body)
+
+	var close_btn := Button.new()
+	close_btn.text = "收下"
+	close_btn.custom_minimum_size = Vector2(140, 44)
+	close_btn.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
+	close_btn.add_theme_font_size_override("font_size", 18)
+	_apply_button_text_colors(close_btn)
+	var btn_style := _flat_style(Color(1, 1, 1, 0.92), Color("#ead2bf"), 14, 2)
+	close_btn.add_theme_stylebox_override("normal", btn_style)
+	close_btn.add_theme_stylebox_override("hover", btn_style)
+	close_btn.add_theme_stylebox_override("pressed", btn_style)
+	close_btn.pressed.connect(_on_knowledge_popup_close)
+	vbox.add_child(close_btn)
+
+func _maybe_show_growth_dialogue(previous_stage_id: String) -> void:
+	if previous_stage_id == "growth":
+		return
+	if state.stage_id != "growth":
+		return
+	if bool(state.seen_stage_dialogues.get("growth", false)):
+		return
+	state.seen_stage_dialogues["growth"] = true
+	growth_dialogue_screen = GrowthDialogueScreenScene.instantiate()
+	growth_dialogue_screen.z_index = 40
+	if growth_dialogue_screen.has_signal("dialogue_finished"):
+		growth_dialogue_screen.dialogue_finished.connect(_on_growth_dialogue_finished)
+	add_child(growth_dialogue_screen)
+
+func _on_growth_dialogue_finished() -> void:
+	growth_dialogue_screen = null
+
+func _maybe_show_mature_dialogue(previous_stage_id: String) -> void:
+	if previous_stage_id == "mature":
+		return
+	if state.stage_id != "mature":
+		return
+	if bool(state.seen_stage_dialogues.get("mature", false)):
+		return
+	state.seen_stage_dialogues["mature"] = true
+	mature_dialogue_screen = MatureDialogueScreenScene.instantiate()
+	mature_dialogue_screen.z_index = 40
+	if mature_dialogue_screen.has_signal("dialogue_finished"):
+		mature_dialogue_screen.dialogue_finished.connect(_on_mature_dialogue_finished)
+	add_child(mature_dialogue_screen)
+
+func _on_mature_dialogue_finished() -> void:
+	mature_dialogue_screen = null
 
 func _load_action_stories() -> Dictionary:
 	var path := "res://data/action_stories.json"

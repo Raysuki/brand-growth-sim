@@ -20,6 +20,19 @@ static func get_knowledge() -> Dictionary:
 		"marketing_theories": _marketing_theories(),
 	}
 
+static func make_id(category_id: String, item_name: String) -> String:
+	return "%s:%s" % [category_id, item_name]
+
+static func get_item(category_id: String, item_name: String) -> Dictionary:
+	var items: Array = get_knowledge().get(category_id, [])
+	for item in items:
+		if str(item.get("name", "")) == item_name:
+			var result: Dictionary = item.duplicate(true)
+			result["category_id"] = category_id
+			result["knowledge_id"] = make_id(category_id, item_name)
+			return result
+	return {}
+
 static func _basic_terms() -> Array:
 	return [
 		{"name": "CTR", "summary": "点击率", "detail": "CTR(Click-Through-Rate):点击率，曝光变为点击的转化率，即点击到达率。"},

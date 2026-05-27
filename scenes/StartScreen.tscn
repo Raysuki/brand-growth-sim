@@ -52,10 +52,10 @@ stretch_mode = 5
 
 [node name="ButtonContainer" type="VBoxContainer" parent="." unique_id=1814031192]
 layout_mode = 0
-offset_left = 120.0
-offset_top = 320.0
-offset_right = 480.0
-offset_bottom = 600.0
+offset_left = 196.0
+offset_top = 341.0
+offset_right = 556.0
+offset_bottom = 621.0
 theme_override_constants/separation = 30
 
 [node name="StartButton" type="Button" parent="ButtonContainer" unique_id=441061902]

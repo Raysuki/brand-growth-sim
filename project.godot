@@ -22,6 +22,14 @@ window/size/viewport_height=720
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
+[autoload]
+
+FontManager="*res://scripts/FontManager.gd"
+
+[gui]
+
+theme/custom="res://themes/GlobalTheme.tres"
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
