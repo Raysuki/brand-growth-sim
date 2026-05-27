@@ -19,10 +19,6 @@
 
 ![游戏 Logo](assets/icons/游戏名logo.png)
 
-![主界面截图](docs/screenshots/main_screen_latest.png)
-
-> 如果截图没有刷新，可查看 `docs/screenshots/main_screen.png` 或重新运行项目截取最新界面。
-
 ### 展示图片
 
 ![开始界面](展示图片/start.png)
@@ -109,6 +105,10 @@ godot --headless --path . tests/SmokeTest.tscn
 
 烟测会验证数据加载、初始收入/开销、行动执行、自动游玩到第 24 回合、属性范围和结局判定。
 
+
+![技术路线](展示图片/展示2.png)
+
+
 ## 项目结构
 
 ```text
@@ -124,6 +124,7 @@ scripts/            核心逻辑与 UI 脚本
 tests/              烟测场景与测试脚本
 ui/                 旧版或外部导入 UI 参考资源
 ```
+![完成情况](展示图片/展示1.png)
 
 ## 主要脚本
 
