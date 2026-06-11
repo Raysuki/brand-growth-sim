@@ -2,6 +2,8 @@
 
 一款使用 Godot 4.6 制作的 2D 品牌经营养成游戏。玩家扮演美妆品牌主理人，在 24 回合内通过市场调研、产品研发、视觉设计、营销推广、渠道建设、用户运营与危机公关等行动，把一个初创品牌推进到成长期、成熟期，并在最终结算时触发不同结局。
 
+[在线试玩](https://raysuki.github.io/brand-growth-sim/) · [查看部署状态](https://github.com/Raysuki/brand-growth-sim/actions/workflows/deploy-pages.yml)
+
 ## 当前状态
 
 项目已经具备可运行的 MVP 主循环：
@@ -94,6 +96,14 @@
 2. 使用 Godot 打开本项目根目录。
 3. 直接运行项目，入口场景为 `res://scenes/StartScreen.tscn`。
 4. 如需跳过开始流程调试主界面，可在编辑器中单独运行 `res://scenes/Main.tscn`。
+
+## 在线预览部署
+
+项目通过 GitHub Actions 自动导出 Godot Web 版本并部署到 GitHub Pages。推送到 `main` 分支后，工作流会使用 Godot 4.6.2 生成网页版本并发布到：
+
+https://raysuki.github.io/brand-growth-sim/
+
+如需手动重新发布，可在 GitHub 仓库的 Actions 页面运行 `Deploy Web Preview` 工作流。
 
 ## 测试方式
 
