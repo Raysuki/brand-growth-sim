@@ -5,6 +5,7 @@ const KnowledgeDataClass := preload("res://scripts/KnowledgeData.gd")
 var categories: Array = []
 var knowledge: Dictionary = {}
 var current_category: String = ""
+var unlocked_knowledge := {}
 
 @onready var panel: PanelContainer = $Panel
 @onready var close_btn: Button = $Panel/Margin/VBox/TitleBar/CloseButton
@@ -40,6 +41,15 @@ func _ready() -> void:
 
 	detail_panel.visible = false
 
+func set_unlocked_knowledge(ids: Dictionary) -> void:
+	unlocked_knowledge = ids.duplicate(true)
+	if is_inside_tree():
+		_rebuild_cards()
+
+func reveal_knowledge(knowledge_id: String) -> void:
+	unlocked_knowledge[knowledge_id] = true
+	if is_inside_tree():
+		_rebuild_cards()
 
 func _on_close() -> void:
 	visible = false
@@ -61,6 +71,9 @@ func _on_category_pressed(cat_id: String) -> void:
 
 
 func _on_card_pressed(item: Dictionary) -> void:
+	var knowledge_id := _item_id(item)
+	if not bool(unlocked_knowledge.get(knowledge_id, false)):
+		return
 	detail_title.text = item.get("name", "")
 	detail_body.text = item.get("detail", "")
 
@@ -148,17 +161,18 @@ func _create_card(item: Dictionary) -> PanelContainer:
 
 	# 标题
 	var title := Label.new()
-	title.text = "📘 " + item.get("name", "")
+	var is_unlocked := bool(unlocked_knowledge.get(_item_id(item), false))
+	title.text = ("📘 " if is_unlocked else "🔒 ") + item.get("name", "")
 	title.add_theme_font_size_override("font_size", 22)
-	title.add_theme_color_override("font_color", Color("#3d2a22"))
+	title.add_theme_color_override("font_color", Color("#3d2a22") if is_unlocked else Color("#817a73"))
 	vbox.add_child(title)
 
 	# 简介
 	var summary := Label.new()
-	summary.text = item.get("summary", "")
+	summary.text = item.get("summary", "") if is_unlocked else "尚未获得。通过行动、事件或回合推进解锁。"
 	summary.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	summary.add_theme_font_size_override("font_size", 15)
-	summary.add_theme_color_override("font_color", Color("#6a5448"))
+	summary.add_theme_color_override("font_color", Color("#6a5448") if is_unlocked else Color("#9a9188"))
 	vbox.add_child(summary)
 
 	# 点击按钮（透明覆盖）
@@ -175,7 +189,14 @@ func _create_card(item: Dictionary) -> PanelContainer:
 		card.scale = Vector2(1.0, 1.0)
 	)
 
-	click_btn.pressed.connect(_on_card_pressed.bind(item))
+	if is_unlocked:
+		click_btn.pressed.connect(_on_card_pressed.bind(item))
+	else:
+		card.modulate = Color(0.62, 0.62, 0.62, 0.72)
+		click_btn.disabled = true
 	card.add_child(click_btn)
 
 	return card
+
+func _item_id(item: Dictionary) -> String:
+	return KnowledgeDataClass.make_id(current_category, str(item.get("name", "")))

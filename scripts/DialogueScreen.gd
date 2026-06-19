@@ -1,13 +1,13 @@
 extends Control
 
 const DIALOGUE_DATA := [
-	{"speaker": "看板娘", "text": "                 项目终于结项了。(你慢腾腾从会议室回到工位上，深舒了一口气)"},
-	{"speaker": "看板娘", "text": "                 连续三个月，盯完了六轮物料修改、扛住了三次预算缩减、安抚了两个想中途退出的供应商。"},
-	{"speaker": "看板娘", "text": "               好在最后数据很漂亮——ROI 达成 132%，比目标还超了 12 个百分点"},
-	{"speaker": "看板娘", "text": "               终于能歇一歇了，你想。（全然没注意到转角走过来欲言又止的主管）"},
+	{"speaker": "主理人", "text": "                 项目终于结项了。(你慢腾腾从会议室回到工位上，深舒了一口气)"},
+	{"speaker": "主理人", "text": "                 连续三个月，盯完了六轮物料修改、扛住了三次预算缩减、安抚了两个想中途退出的供应商。"},
+	{"speaker": "主理人", "text": "               好在最后数据很漂亮——ROI 达成 132%，比目标还超了 12 个百分点"},
+	{"speaker": "主理人", "text": "               终于能歇一歇了，你想。（全然没注意到转角走过来欲言又止的主管）"},
 	{"speaker": "主管", "text": "               这次项目你辛苦了，但公司复盘后，认为成本控制和团队协作上还有很大优化空间"},
 	{"speaker": "主管", "text": "               接下来会调整市场打法，你负责的方向暂时没有headcount了"},
-	{"speaker": "看板娘", "text": "               可项目刚顺利结束，我们的数据反馈也很好……"},
+	{"speaker": "主理人", "text": "               可项目刚顺利结束，我们的数据反馈也很好……"},
 	{"speaker": "主管", "text": "               你的能力没问题的，只是方向调整。公司会按N+2补偿，刚好你也趁这个机会多休息休息，陪陪家里人"},
 ]
 
@@ -61,7 +61,7 @@ func _advance_dialogue() -> void:
 	name_label.text = speaker
 	text_label.text = entry["text"]
 
-	if speaker == "看板娘":
+	if speaker == "主理人":
 		if not mascot_visible:
 			mascot.visible = true
 			mascot_visible = true

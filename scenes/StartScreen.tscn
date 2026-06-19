@@ -52,16 +52,16 @@ stretch_mode = 5
 
 [node name="ButtonContainer" type="VBoxContainer" parent="." unique_id=1814031192]
 layout_mode = 0
-offset_left = 120.0
-offset_top = 320.0
-offset_right = 480.0
-offset_bottom = 600.0
+offset_left = 196.0
+offset_top = 341.0
+offset_right = 556.0
+offset_bottom = 621.0
 theme_override_constants/separation = 30
 
 [node name="StartButton" type="Button" parent="ButtonContainer" unique_id=441061902]
 custom_minimum_size = Vector2(280, 70)
 layout_mode = 2
-theme_override_colors/font_color = Color(0.875, 0.875, 0.875, 1)
+theme_override_colors/font_color = Color(0.5985285, 0.28964314, 0.25038257, 1)
 theme_override_colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
 theme_override_font_sizes/font_size = 32
 text = "开始游戏"
@@ -69,6 +69,7 @@ text = "开始游戏"
 [node name="LoadButton" type="Button" parent="ButtonContainer" unique_id=1145218070]
 custom_minimum_size = Vector2(280, 70)
 layout_mode = 2
+theme_override_colors/font_color = Color(0.58431375, 0.3019608, 0.2627451, 1)
 theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
 theme_override_colors/icon_focus_color = Color(0.9411765, 0.32941177, 0, 1)
 theme_override_font_sizes/font_size = 32
@@ -77,6 +78,7 @@ text = "读取存档"
 [node name="ExitButton" type="Button" parent="ButtonContainer" unique_id=596797144]
 custom_minimum_size = Vector2(280, 70)
 layout_mode = 2
+theme_override_colors/font_color = Color(0.58431375, 0.3019608, 0.2627451, 1)
 theme_override_colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
 theme_override_font_sizes/font_size = 32
 text = "关闭游戏"

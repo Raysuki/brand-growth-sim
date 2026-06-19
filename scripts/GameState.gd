@@ -41,6 +41,8 @@ var action_log := []
 var event_log := []
 var turn_log := []
 var current_turn_spending := 0
+var acquired_knowledge := {}
+var seen_stage_dialogues := {}
 
 func reset(all_data: Dictionary) -> void:
 	var initial: Dictionary = all_data.get("attributes", {}).get("initial", {})
@@ -75,6 +77,8 @@ func reset(all_data: Dictionary) -> void:
 	action_log.clear()
 	event_log.clear()
 	turn_log.clear()
+	acquired_knowledge.clear()
+	seen_stage_dialogues.clear()
 	_update_trend(all_data)
 
 func start_turn(all_data: Dictionary) -> void:

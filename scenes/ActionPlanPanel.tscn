@@ -1,0 +1,360 @@
+[gd_scene load_steps=16 format=3]
+
+[ext_resource type="Texture2D" path="res://assets/ui/右侧行动大面板底图.png" id="1_panel"]
+[ext_resource type="Texture2D" path="res://assets/ui/计划提示条底图.png" id="2_plan"]
+[ext_resource type="Texture2D" path="res://assets/icons/结束回合.png" id="3_finish"]
+[ext_resource type="Texture2D" path="res://assets/icons/市场调研.png" id="4_market"]
+[ext_resource type="Texture2D" path="res://assets/icons/产品研发.png" id="5_product"]
+[ext_resource type="Texture2D" path="res://assets/icons/视觉设计.png" id="6_visual"]
+[ext_resource type="Texture2D" path="res://assets/icons/营销推广.png" id="7_marketing"]
+[ext_resource type="Texture2D" path="res://assets/icons/渠道建设.png" id="8_channel"]
+[ext_resource type="Texture2D" path="res://assets/icons/用户运营.png" id="9_user"]
+[ext_resource type="Texture2D" path="res://assets/icons/危机公关.png" id="10_crisis"]
+[ext_resource type="Texture2D" path="res://assets/ui/action_open_button.png" id="11_action_open"]
+
+[sub_resource type="StyleBoxTexture" id="StylePanel"]
+texture = ExtResource("1_panel")
+texture_margin_left = 42.0
+texture_margin_top = 42.0
+texture_margin_right = 42.0
+texture_margin_bottom = 42.0
+
+[sub_resource type="StyleBoxTexture" id="StylePlan"]
+texture = ExtResource("2_plan")
+texture_margin_left = 22.0
+texture_margin_top = 14.0
+texture_margin_right = 22.0
+texture_margin_bottom = 14.0
+
+[sub_resource type="StyleBoxFlat" id="StyleSmallButton"]
+bg_color = Color(1, 1, 1, 0.86)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.8, 0.95, 0.9, 1)
+corner_radius_top_left = 18
+corner_radius_top_right = 18
+corner_radius_bottom_right = 18
+corner_radius_bottom_left = 18
+
+[sub_resource type="StyleBoxFlat" id="StyleCategoryButton"]
+bg_color = Color(1, 1, 1, 0.94)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.917647, 0.823529, 0.74902, 1)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+
+[sub_resource type="StyleBoxFlat" id="StyleActionCard"]
+bg_color = Color(1, 1, 1, 0.92)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.917647, 0.823529, 0.74902, 1)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+
+[node name="ActionPlanPanel" type="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ActionScreenShade" type="ColorRect" parent="."]
+unique_name_in_owner = true
+z_index = 17
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.12, 0.08, 0.06, 0.36)
+
+[node name="RightPanel" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+z_index = 18
+layout_mode = 0
+offset_left = 145.0
+offset_top = 68.0
+offset_right = 1135.0
+offset_bottom = 692.0
+theme_override_styles/panel = SubResource("StylePanel")
+
+[node name="ActionTitle" type="Label" parent="."]
+z_index = 19
+layout_mode = 0
+offset_left = 236.0
+offset_top = 102.0
+offset_right = 565.0
+offset_bottom = 144.0
+theme_override_colors/font_color = Color(0.262745, 0.239216, 0.305882, 1)
+theme_override_font_sizes/font_size = 30
+text = "本回合行动"
+
+[node name="CategoryScroll" type="ScrollContainer" parent="."]
+z_index = 19
+custom_minimum_size = Vector2(0, 106)
+layout_mode = 0
+offset_left = 224.0
+offset_top = 148.0
+offset_right = 1056.0
+offset_bottom = 254.0
+vertical_scroll_mode = 0
+
+[node name="CategoryList" type="HBoxContainer" parent="CategoryScroll"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 12
+
+[node name="PreviewMarketResearch" type="Button" parent="CategoryScroll/CategoryList"]
+custom_minimum_size = Vector2(96, 82)
+layout_mode = 2
+theme_override_font_sizes/font_size = 1
+theme_override_styles/normal = SubResource("StyleCategoryButton")
+theme_override_styles/pressed = SubResource("StyleCategoryButton")
+theme_override_styles/hover = SubResource("StyleCategoryButton")
+icon = ExtResource("4_market")
+icon_alignment = 1
+vertical_icon_alignment = 1
+
+[node name="PreviewProductRnd" type="Button" parent="CategoryScroll/CategoryList"]
+custom_minimum_size = Vector2(96, 82)
+layout_mode = 2
+theme_override_font_sizes/font_size = 1
+theme_override_styles/normal = SubResource("StyleCategoryButton")
+theme_override_styles/pressed = SubResource("StyleCategoryButton")
+theme_override_styles/hover = SubResource("StyleCategoryButton")
+icon = ExtResource("5_product")
+icon_alignment = 1
+vertical_icon_alignment = 1
+
+[node name="PreviewVisualDesign" type="Button" parent="CategoryScroll/CategoryList"]
+custom_minimum_size = Vector2(96, 82)
+layout_mode = 2
+theme_override_font_sizes/font_size = 1
+theme_override_styles/normal = SubResource("StyleCategoryButton")
+theme_override_styles/pressed = SubResource("StyleCategoryButton")
+theme_override_styles/hover = SubResource("StyleCategoryButton")
+icon = ExtResource("6_visual")
+icon_alignment = 1
+vertical_icon_alignment = 1
+
+[node name="PreviewMarketing" type="Button" parent="CategoryScroll/CategoryList"]
+custom_minimum_size = Vector2(96, 82)
+layout_mode = 2
+theme_override_font_sizes/font_size = 1
+theme_override_styles/normal = SubResource("StyleCategoryButton")
+theme_override_styles/pressed = SubResource("StyleCategoryButton")
+theme_override_styles/hover = SubResource("StyleCategoryButton")
+icon = ExtResource("7_marketing")
+icon_alignment = 1
+vertical_icon_alignment = 1
+
+[node name="PreviewChannel" type="Button" parent="CategoryScroll/CategoryList"]
+custom_minimum_size = Vector2(96, 82)
+layout_mode = 2
+theme_override_font_sizes/font_size = 1
+theme_override_styles/normal = SubResource("StyleCategoryButton")
+theme_override_styles/pressed = SubResource("StyleCategoryButton")
+theme_override_styles/hover = SubResource("StyleCategoryButton")
+icon = ExtResource("8_channel")
+icon_alignment = 1
+vertical_icon_alignment = 1
+
+[node name="PreviewUserOps" type="Button" parent="CategoryScroll/CategoryList"]
+custom_minimum_size = Vector2(96, 82)
+layout_mode = 2
+theme_override_font_sizes/font_size = 1
+theme_override_styles/normal = SubResource("StyleCategoryButton")
+theme_override_styles/pressed = SubResource("StyleCategoryButton")
+theme_override_styles/hover = SubResource("StyleCategoryButton")
+icon = ExtResource("9_user")
+icon_alignment = 1
+vertical_icon_alignment = 1
+
+[node name="PreviewCrisisPr" type="Button" parent="CategoryScroll/CategoryList"]
+custom_minimum_size = Vector2(96, 82)
+layout_mode = 2
+theme_override_font_sizes/font_size = 1
+theme_override_styles/normal = SubResource("StyleCategoryButton")
+theme_override_styles/pressed = SubResource("StyleCategoryButton")
+theme_override_styles/hover = SubResource("StyleCategoryButton")
+icon = ExtResource("10_crisis")
+icon_alignment = 1
+vertical_icon_alignment = 1
+
+[node name="ActionScroll" type="ScrollContainer" parent="."]
+unique_name_in_owner = true
+z_index = 19
+layout_mode = 0
+offset_left = 226.0
+offset_top = 270.0
+offset_right = 1055.0
+offset_bottom = 568.0
+horizontal_scroll_mode = 0
+
+[node name="ActionList" type="VBoxContainer" parent="ActionScroll"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="PreviewActionCard1" type="HBoxContainer" parent="ActionScroll/ActionList"]
+custom_minimum_size = Vector2(0, 72)
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Icon" type="TextureRect" parent="ActionScroll/ActionList/PreviewActionCard1"]
+custom_minimum_size = Vector2(56, 56)
+layout_mode = 2
+texture = ExtResource("8_channel")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Text" type="Label" parent="ActionScroll/ActionList/PreviewActionCard1"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.301961, 0.215686, 0.176471, 1)
+theme_override_font_sizes/font_size = 18
+text = "线上开店
+资金 20   AP 1    渠道 +12"
+
+[node name="PreviewActionCard2" type="HBoxContainer" parent="ActionScroll/ActionList"]
+custom_minimum_size = Vector2(0, 72)
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Icon" type="TextureRect" parent="ActionScroll/ActionList/PreviewActionCard2"]
+custom_minimum_size = Vector2(56, 56)
+layout_mode = 2
+texture = ExtResource("8_channel")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Text" type="Label" parent="ActionScroll/ActionList/PreviewActionCard2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.301961, 0.215686, 0.176471, 1)
+theme_override_font_sizes/font_size = 18
+text = "商务谈判
+资金 15   AP 1    渠道 +12"
+
+[node name="PreviewActionCard3" type="HBoxContainer" parent="ActionScroll/ActionList"]
+custom_minimum_size = Vector2(0, 72)
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Icon" type="TextureRect" parent="ActionScroll/ActionList/PreviewActionCard3"]
+custom_minimum_size = Vector2(56, 56)
+layout_mode = 2
+texture = ExtResource("8_channel")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Text" type="Label" parent="ActionScroll/ActionList/PreviewActionCard3"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.301961, 0.215686, 0.176471, 1)
+theme_override_font_sizes/font_size = 18
+text = "线下铺货
+资金 40   AP 2    渠道 +17  知名 +3"
+
+[node name="PlanPanel" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+z_index = 19
+custom_minimum_size = Vector2(0, 56)
+layout_mode = 0
+offset_left = 226.0
+offset_top = 585.0
+offset_right = 1055.0
+offset_bottom = 641.0
+theme_override_styles/panel = SubResource("StylePlan")
+
+[node name="PlanLabel" type="Label" parent="."]
+unique_name_in_owner = true
+z_index = 19
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 0
+offset_left = 268.0
+offset_top = 598.0
+offset_right = 1018.0
+offset_bottom = 632.0
+theme_override_colors/font_color = Color(0.3019608, 0.21568628, 0.1764706, 1)
+theme_override_font_sizes/font_size = 18
+text = "本回合计划：未选择    合计资金 0 / AP 0"
+autowrap_mode = 3
+
+[node name="FinishTurnButton" type="Button" parent="."]
+unique_name_in_owner = true
+z_index = 19
+custom_minimum_size = Vector2(300, 64)
+layout_mode = 0
+offset_left = 492.0
+offset_top = 646.0
+offset_right = 792.0
+offset_bottom = 710.0
+theme_override_font_sizes/font_size = 28
+icon = ExtResource("3_finish")
+flat = true
+expand_icon = true
+
+[node name="ClearPlanButton" type="Button" parent="."]
+unique_name_in_owner = true
+z_index = 19
+custom_minimum_size = Vector2(146, 52)
+layout_mode = 0
+offset_left = 828.0
+offset_top = 652.0
+offset_right = 974.0
+offset_bottom = 704.0
+theme_override_colors/font_color = Color(0.3019608, 0.21568628, 0.1764706, 1)
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("StyleSmallButton")
+theme_override_styles/pressed = SubResource("StyleSmallButton")
+theme_override_styles/hover = SubResource("StyleSmallButton")
+text = "清空计划"
+
+[node name="ActionOpenButton" type="Button" parent="."]
+unique_name_in_owner = true
+visible = false
+z_index = 5
+custom_minimum_size = Vector2(333, 132)
+layout_mode = 0
+offset_left = 896.0
+offset_top = 492.0
+offset_right = 1229.0
+offset_bottom = 624.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 39
+icon = ExtResource("11_action_open")
+flat = true
+expand_icon = true
+
+[node name="ActionCloseButton" type="Button" parent="."]
+unique_name_in_owner = true
+z_index = 20
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 0
+offset_left = 1071.0
+offset_top = 86.0
+offset_right = 1119.0
+offset_bottom = 134.0
+theme_override_colors/font_color = Color(0.4, 0.3, 0.25, 1)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleSmallButton")
+theme_override_styles/pressed = SubResource("StyleSmallButton")
+theme_override_styles/hover = SubResource("StyleSmallButton")
+text = "×"

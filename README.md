@@ -2,6 +2,8 @@
 
 一款使用 Godot 4.6 制作的 2D 品牌经营养成游戏。玩家扮演美妆品牌主理人，在 24 回合内通过市场调研、产品研发、视觉设计、营销推广、渠道建设、用户运营与危机公关等行动，把一个初创品牌推进到成长期、成熟期，并在最终结算时触发不同结局。
 
+[在线试玩](https://raysuki.github.io/brand-growth-sim/) · [查看部署状态](https://github.com/Raysuki/brand-growth-sim/actions/workflows/deploy-pages.yml)
+
 ## 当前状态
 
 项目已经具备可运行的 MVP 主循环：
@@ -13,7 +15,7 @@
 - 知识面板：广告与营销术语学习内容
 - 24 回合经营、阶段推进、风口轮换、事件触发、结局判定
 
-当前主场景已接入背景图、Logo、看板娘、行动分类图标、资源面板、属性面板、右侧行动面板、行动故事卡和结局弹窗等 UI 资源。
+当前主场景已接入背景图、Logo、主理人、行动分类图标、资源面板、属性面板、右侧行动面板、行动故事卡和结局弹窗等 UI 资源。
 
 ## 项目展示
 
@@ -87,6 +89,14 @@
 3. 直接运行项目，入口场景为 `res://scenes/StartScreen.tscn`。
 4. 如需跳过开始流程调试主界面，可在编辑器中单独运行 `res://scenes/Main.tscn`。
 
+## 在线预览部署
+
+项目通过 GitHub Actions 自动导出 Godot Web 版本并部署到 GitHub Pages。推送到 `main` 分支后，工作流会使用 Godot 4.6.2 生成网页版本并发布到：
+
+https://raysuki.github.io/brand-growth-sim/
+
+如需手动重新发布，可在 GitHub 仓库的 Actions 页面运行 `Deploy Web Preview` 工作流。
+
 ## 测试方式
 
 项目包含一个基础烟测场景：
@@ -103,7 +113,7 @@ godot --headless --path . tests/SmokeTest.tscn
 assets/
   backgrounds/      阶段背景与场景图
   icons/            属性、行动、按钮、Logo 等图标
-  npcs/             看板娘、部门角色、主理人等 NPC 立绘
+  npcs/             主理人、部门角色等 NPC 立绘
   ui/               面板、按钮、行动卡、资源卡等 UI 素材
 data/               玩法数值、行动、事件、风口、结局等 JSON 数据
 docs/screenshots/   README 展示截图
@@ -131,4 +141,3 @@ ui/                 旧版或外部导入 UI 参考资源
 - 品牌命名流程已经有界面和脚本，但主玩法中的品牌名还未完整贯穿到 UI 与结局文本。
 - 部分数据注释来自 `详细玩法设计2.0.docx`，后续可把设计文档中的未编码内容继续补进事件、行动故事和结局描述。
 - 项目已有 `.import` 文件和 Godot 缓存，提交前建议确认哪些资源是正式素材，哪些只是临时参考。
-
