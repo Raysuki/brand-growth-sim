@@ -6,27 +6,9 @@
 
 [在线试玩](https://raysuki.github.io/brand-growth-sim/) · [查看部署状态](https://github.com/Raysuki/brand-growth-sim/actions/workflows/deploy-pages.yml)
 
-## 当前状态
-
-项目已经具备可运行的 MVP 主循环：
-
-- 开始界面：`res://scenes/StartScreen.tscn`
-- 剧情/引导界面：`res://scenes/DialogueScreen.tscn`
-- 品牌命名界面：`res://scenes/BrandSetupScreen.tscn`
-- 主玩法界面：`res://scenes/Main.tscn`
-- 知识面板：广告与营销术语学习内容
-- 24 回合经营、阶段推进、风口轮换、事件触发、结局判定
-
-当前主场景已接入背景图、Logo、主理人、行动分类图标、资源面板、属性面板、右侧行动面板、行动故事卡和结局弹窗等 UI 资源。
-
+## 项目介绍
 ![游戏介绍](展示图片/游戏介绍.png)
-
-游戏以回合制经营为骨架。每回合玩家先规划行动，再点击结束回合统一执行行动并结算收入、开销、风险衰减、事件和阶段变化。
-
 ![游戏介绍 2](展示图片/游戏介绍2.png)
-
-主玩法界面把阶段、资源、属性、行动计划和事件日志集中在同一屏，方便玩家在每个回合快速判断品牌经营状态。
-
 ![游戏主界面](展示图片/游戏主界面.png)
 
 ## 核心玩法
@@ -88,30 +70,17 @@
 
 结局优先级由数据文件控制，强制失败和特殊过程型结局会优先于普通经营结局。
 
+## 知识图鉴
+知识图鉴用于收纳玩家在经营过程中解锁的广告与营销术语，让玩法推进和知识学习形成反馈。
+
+![知识图鉴](展示图片/知识图鉴.png)
+
 ## 运行方式
 
 1. 安装 Godot 4.6 或兼容的 Godot 4.x 版本。
 2. 使用 Godot 打开本项目根目录。
 3. 直接运行项目，入口场景为 `res://scenes/StartScreen.tscn`。
 4. 如需跳过开始流程调试主界面，可在编辑器中单独运行 `res://scenes/Main.tscn`。
-
-## 在线预览部署
-
-项目通过 GitHub Actions 自动导出 Godot Web 版本并部署到 GitHub Pages。推送到 `main` 分支后，工作流会使用 Godot 4.6.2 生成网页版本并发布到：
-
-https://raysuki.github.io/brand-growth-sim/
-
-如需手动重新发布，可在 GitHub 仓库的 Actions 页面运行 `Deploy Web Preview` 工作流。
-
-## 测试方式
-
-项目包含一个基础烟测场景：
-
-```powershell
-godot --headless --path . tests/SmokeTest.tscn
-```
-
-烟测会验证数据加载、初始收入/开销、行动执行、自动游玩到第 24 回合、属性范围和结局判定。
 
 
 ## 项目结构
@@ -140,14 +109,5 @@ ui/                 旧版或外部导入 UI 参考资源
 - `scripts/Main.gd`：主玩法 UI、行动计划、风口卡、事件弹窗、故事卡和结局展示
 - `scripts/KnowledgeData.gd` / `scripts/KnowledgePanel.gd`：广告营销知识面板
 
-知识图鉴用于收纳玩家在经营过程中解锁的广告与营销术语，让玩法推进和知识学习形成反馈。
 
-![知识图鉴](展示图片/知识图鉴.png)
 
-## 已知问题与后续建议
-
-- 当前部分 `.gd`、`.json` 和 `project.godot` 文件中的中文文本显示为乱码，可能是历史编码转换造成的；README 已先恢复为可读中文，后续建议集中修复脚本、数据和配置文件的中文内容。
-- `StartScreen.gd` 中“读取存档”按钮目前为空实现，后续可接入存档系统。
-- 品牌命名流程已经有界面和脚本，但主玩法中的品牌名还未完整贯穿到 UI 与结局文本。
-- 部分数据注释来自 `详细玩法设计2.0.docx`，后续可把设计文档中的未编码内容继续补进事件、行动故事和结局描述。
-- 项目已有 `.import` 文件和 Godot 缓存，提交前建议确认哪些资源是正式素材，哪些只是临时参考。
